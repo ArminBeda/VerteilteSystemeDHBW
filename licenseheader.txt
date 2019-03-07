@@ -1,0 +1,20 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright © ${date?date?string("yyyy")} Armin Beda
+${licensePrefix}
+${licensePrefix}E-Mail: bedaarmin@gmail.com
+${licensePrefix}
+${licensePrefix}Copyright © ${date?date?string("yyyy")} Gamze-Nur Topkaç
+${licensePrefix}
+${licensePrefix}E-Mail: gamzetopkac@hotmail.de
+${licensePrefix}
+${licensePrefix}Copyright © ${date?date?string("yyyy")} Aisha Choudhery
+${licensePrefix}
+${licensePrefix}E-Mail: aisha.ch@hotmail.de
+${licensePrefix}
+${licensePrefix}Dieser Quellcode ist lizenziert unter einer
+${licensePrefix}Creative Commons Namensnennung 4.0 International Lizenz.
+<#if licenseLast??>
+${licenseLast}
+</#if>
