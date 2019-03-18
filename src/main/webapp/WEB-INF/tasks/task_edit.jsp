@@ -17,10 +17,10 @@
     <jsp:attribute name="title">
         <c:choose>
             <c:when test="${edit}">
-                Aufgabe bearbeiten
+                Projekt bearbeiten
             </c:when>
             <c:otherwise>
-                Aufgabe anlegen
+                Projekt anlegen
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -46,12 +46,12 @@
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                 <%-- Eingabefelder --%>
-                <label for="task_owner">Eigentümer:</label>
+                <label for="task_owner">Projektleiter:</label>
                 <div class="side-by-side">
                     <input type="text" name="task_owner" value="${task_form.values["task_owner"][0]}" readonly="readonly">
                 </div>
 
-                <label for="task_category">Kategorie:</label>
+                <label for="task_category">Abteilung:</label>
                 <div class="side-by-side">
                     <select name="task_category">
                         <option value="">Keine Kategorie</option>
@@ -65,7 +65,7 @@
                 </div>
 
                 <label for="task_due_date">
-                    Fällig am:
+                    Endet am:
                     <span class="required">*</span>
                 </label>
                 <div class="side-by-side">
@@ -74,7 +74,7 @@
                 </div>
 
                 <label for="task_status">
-                    Status:
+                    Projektstatus:
                     <span class="required">*</span>
                 </label>
                 <div class="side-by-side margin">
@@ -88,7 +88,7 @@
                 </div>
 
                 <label for="task_short_text">
-                    Bezeichnung:
+                    Projektbezeichnung:
                     <span class="required">*</span>
                 </label>
                 <div class="side-by-side">
