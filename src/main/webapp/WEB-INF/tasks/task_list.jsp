@@ -28,21 +28,21 @@
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/tasks/task/new/"/>">Projekt anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/tasks/categories/"/>">Projektkategorien bearbeiten</a>
         </div>
     </jsp:attribute>
 
     <jsp:attribute name="content">
         <%-- Suchfilter --%>
         <form method="GET" class="horizontal" id="search">
-            <input type="text" name="search_text" value="${param.search_text}" placeholder="Beschreibung"/>
+            <input type="text" name="search_text" value="${param.search_text}" placeholder="Projektbezeichnung"/>
 
             <select name="search_category">
-                <option value="">Alle Kategorien</option>
+                <option value="">Alle Abteilungen</option>
 
                 <c:forEach items="${categories}" var="category">
                     <option value="${category.id}" ${param.search_category == category.id ? 'selected' : ''}>
@@ -60,6 +60,8 @@
                     </option>
                 </c:forEach>
             </select>
+            
+          
 
             <button class="icon-search" type="submit">
                 Suchen
@@ -79,11 +81,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Bezeichnung</th>
-                            <th>Kategorie</th>
-                            <th>Eigentümer</th>
+                            <th>Projektbezeichnung</th>
+                            <th>Abteilung</th>
+                            <th>Projektleiter</th>
                             <th>Status</th>
                             <th>Fällig am</th>
+                            <th>Prio</th>
                         </tr>
                     </thead>
                     <c:forEach items="${tasks}" var="task">
