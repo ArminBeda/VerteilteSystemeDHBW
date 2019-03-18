@@ -48,13 +48,13 @@ public class User implements Serializable {
     
 
     @Column(name = "VORNAME", length = 64)
-    @Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
-    @NotNull(message = "Der Benutzername darf nicht leer sein.")
+    //@Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
+    //@NotNull(message = "Der Benutzername darf nicht leer sein.")
     private String vorname;
     
     @Column(name = "NACHNAME", length = 64)
-    @Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
-    @NotNull(message = "Der Benutzername darf nicht leer sein.")
+    //@Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
+    //@NotNull(message = "Der Benutzername darf nicht leer sein.")
     private String nachname;
     
     public class Password {
