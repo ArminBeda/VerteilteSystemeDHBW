@@ -65,7 +65,7 @@
                 </div>
 
                 <label for="task_due_date">
-                    Endet am:
+                    Projekt fällig am:
                     <span class="required">*</span>
                 </label>
                 <div class="side-by-side">
