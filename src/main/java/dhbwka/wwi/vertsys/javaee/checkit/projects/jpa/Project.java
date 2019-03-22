@@ -40,7 +40,7 @@ public class Project implements Serializable {
     private long id;
 
     @ManyToOne
-    @NotNull(message = "Die Aufgabe muss einem Benutzer geordnet werden.")
+    @NotNull(message = "Das Projekt muss einem Projektleiter zugeordnet werden.")
     private User owner;
 
     @ManyToOne

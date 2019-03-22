@@ -13,6 +13,7 @@ import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.EntityBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Abteilung;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -52,6 +53,7 @@ public class ProjectBean extends EntityBean<Project, Long> {
      * @param search In der Kurzbeschreibung enthaltener Text (optional)
      * @param abteilung Abteilung (optional)
      * @param status Status (optional)
+     * @param priority Priorität
      * @return Liste mit den gefundenen Aufgaben
      */
     public List<Project> search(String search, Abteilung abteilung, ProjectStatus status) {
@@ -85,6 +87,7 @@ public class ProjectBean extends EntityBean<Project, Long> {
             p = cb.and(p, cb.equal(from.get("status"), status));
             query.where(p);
         }
+        
         
         return em.createQuery(query).getResultList();
     }
