@@ -16,14 +16,15 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 html, body {
     padding: 0;
     margin: 0;
+    
 }
 
 html {
     font-family: 'Quicksand', sans-serif;
     font-size: 14pt;
-
   
     background-image: url(hintergrund.jpg);
+    opacity: 0,6;
   
     background-repeat: no-repeat;
     background-position: center center;
