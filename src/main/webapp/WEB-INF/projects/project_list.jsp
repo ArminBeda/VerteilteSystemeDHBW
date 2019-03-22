@@ -87,7 +87,7 @@
                             <th>Status</th>
                             <th>Priorität</th>
                             <th>Fällig am</th>
-                            <th>Begintt am</th>
+                            <th>Beginnt am</th>
                             
                         </tr>
                     </thead>
