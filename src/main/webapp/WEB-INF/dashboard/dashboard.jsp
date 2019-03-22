@@ -24,15 +24,15 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/list/"/>">Liste</a>
+            <a href="<c:url value="/app/projects/list/"/>">Liste</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Projekt anlegen</a>
+            <a href="<c:url value="/app/projects/project/new/"/>">Projekt anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Projekt bearbeiten</a>
+            <a href="<c:url value="/app/projects/abteilungen/"/>">Abteilung bearbeiten</a>
         </div>
     </jsp:attribute>
 

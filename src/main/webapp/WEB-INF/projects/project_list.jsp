@@ -19,7 +19,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-        <link rel="stylesheet" href="<c:url value="/css/task_list.css"/>" />
+        <link rel="stylesheet" href="<c:url value="/css/project_list.css"/>" />
     </jsp:attribute>
 
     <jsp:attribute name="menu">
@@ -28,11 +28,11 @@
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Projekt anlegen</a>
+            <a href="<c:url value="/app/projects/project/new/"/>">Projekt anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Projektkategorien bearbeiten</a>
+            <a href="<c:url value="/app/projects/abteilungen/"/>">Abteilungen bearbeiten</a>
         </div>
     </jsp:attribute>
 
@@ -41,12 +41,12 @@
         <form method="GET" class="horizontal" id="search">
             <input type="text" name="search_text" value="${param.search_text}" placeholder="Projektbezeichnung"/>
 
-            <select name="search_category">
+            <select name="search_abteilung">
                 <option value="">Alle Abteilungen</option>
 
-                <c:forEach items="${categories}" var="category">
-                    <option value="${category.id}" ${param.search_category == category.id ? 'selected' : ''}>
-                        <c:out value="${category.name}" />
+                <c:forEach items="${abteilungen}" var="abteilung">
+                    <option value="${abteilung.id}" ${param.search_abteilung == abteilung.id ? 'selected' : ''}>
+                        <c:out value="${abteilung.name}" />
                     </option>
                 </c:forEach>
             </select>
@@ -70,7 +70,7 @@
 
         <%-- Gefundene Aufgaben --%>
         <c:choose>
-            <c:when test="${empty tasks}">
+            <c:when test="${empty projects}">
                 <p>
                     Es wurden keine Aufgaben gefunden. 🐈
                 </p>
@@ -89,25 +89,25 @@
                             <th>Prio</th>
                         </tr>
                     </thead>
-                    <c:forEach items="${tasks}" var="task">
+                    <c:forEach items="${projects}" var="project">
                         <tr>
                             <td>
-                                <a href="<c:url value="/app/tasks/task/${task.id}/"/>">
-                                    <c:out value="${task.shortText}"/>
+                                <a href="<c:url value="/app/projects/project/${project.id}/"/>">
+                                    <c:out value="${project.shortText}"/>
                                 </a>
                             </td>
                             <td>
-                                <c:out value="${task.category.name}"/>
+                                <c:out value="${project.abteilung.name}"/>
                             </td>
                             <td>
-                                <c:out value="${task.owner.username}"/>
+                                <c:out value="${project.owner.username}"/>
                             </td>
                             <td>
-                                <c:out value="${task.status.label}"/>
+                                <c:out value="${project.status.label}"/>
                             </td>
                             <td>
-                                <c:out value="${utils.formatDate(task.dueDate)}"/>
-                                <c:out value="${utils.formatTime(task.dueTime)}"/>
+                                <c:out value="${utils.formatDate(project.dueDate)}"/>
+                                <c:out value="${utils.formatTime(project.dueTime)}"/>
                             </td>
                         </tr>
                     </c:forEach>

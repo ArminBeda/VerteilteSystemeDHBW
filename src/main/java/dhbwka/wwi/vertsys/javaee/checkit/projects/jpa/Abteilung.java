@@ -7,7 +7,7 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package dhbwka.wwi.vertsys.javaee.checkit.tasks.jpa;
+package dhbwka.wwi.vertsys.javaee.checkit.projects.jpa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,16 +24,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Kategorien, die den Aufgaben zugeordnet werden können.
+ * Abteilungen, die den Projekten zugeordnet werden können.
  */
 @Entity
-public class Category implements Serializable {
+public class Abteilung implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "category_ids")
-    @TableGenerator(name = "category_ids", initialValue = 0, allocationSize = 50)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "abteilung_ids")
+    @TableGenerator(name = "abteilung_ids", initialValue = 0, allocationSize = 50)
     private long id;
 
     @Column(length = 30)
@@ -41,14 +41,14 @@ public class Category implements Serializable {
     @Size(min = 3, max = 30, message = "Der Name muss zwischen drei und 30 Zeichen lang sein.")
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    List<Task> tasks = new ArrayList<>();
+    @OneToMany(mappedBy = "abteilung", fetch = FetchType.LAZY)
+    List<Project> projects = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
-    public Category() {
+    public Abteilung() {
     }
 
-    public Category(String name) {
+    public Abteilung(String name) {
         this.name = name;
     }
     //</editor-fold>
@@ -70,12 +70,12 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
     //</editor-fold>
 
