@@ -17,6 +17,7 @@ import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
@@ -115,6 +116,7 @@ public class ProjectEditServlet extends HttpServlet {
         String projectDueDate = request.getParameter("project_due_date");
         String projectDueTime = request.getParameter("project_due_time");
         String projectStatus = request.getParameter("project_status");
+        String projectPriority = request.getParameter("project_priority");
         String projectShortText = request.getParameter("project_short_text");
         String projectLongText = request.getParameter("project_long_text");
 
@@ -148,6 +150,7 @@ public class ProjectEditServlet extends HttpServlet {
         } catch (IllegalArgumentException ex) {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
+        
 
         project.setShortText(projectShortText);
         project.setLongText(projectLongText);
@@ -266,6 +269,10 @@ public class ProjectEditServlet extends HttpServlet {
 
         values.put("project_status", new String[]{
             project.getStatus().toString()
+        });
+        
+          values.put("project_priority", new String[]{
+            project.getPriority().toString()
         });
 
         values.put("project_short_text", new String[]{

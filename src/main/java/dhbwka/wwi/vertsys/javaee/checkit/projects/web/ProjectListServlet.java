@@ -14,6 +14,7 @@ import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.ProjectBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Abteilung;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;

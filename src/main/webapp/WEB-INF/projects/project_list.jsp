@@ -52,7 +52,7 @@
             </select>
 
             <select name="search_status">
-                <option value="">Alle Stati</option>
+                <option value="">Alle Status</option>
 
                 <c:forEach items="${statuses}" var="status">
                     <option value="${status}" ${param.search_status == status ? 'selected' : ''}>
@@ -72,7 +72,7 @@
         <c:choose>
             <c:when test="${empty projects}">
                 <p>
-                    Es wurden keine Aufgaben gefunden. 🐈
+                    Es wurden keine Projekte gefunden. 🐈
                 </p>
             </c:when>
             <c:otherwise>
@@ -85,8 +85,9 @@
                             <th>Abteilung</th>
                             <th>Projektleiter</th>
                             <th>Status</th>
+                            <th>Priorität</th>
                             <th>Fällig am</th>
-                            <th>Prio</th>
+                            
                         </tr>
                     </thead>
                     <c:forEach items="${projects}" var="project">
@@ -104,6 +105,9 @@
                             </td>
                             <td>
                                 <c:out value="${project.status.label}"/>
+                            </td>
+                            <td>
+                                <c:out value="${project.priority.label}"/>
                             </td>
                             <td>
                                 <c:out value="${utils.formatDate(project.dueDate)}"/>

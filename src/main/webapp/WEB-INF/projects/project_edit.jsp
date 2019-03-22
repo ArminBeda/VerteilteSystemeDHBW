@@ -86,6 +86,20 @@
                         </c:forEach>
                     </select>
                 </div>
+                
+                <label for="project_priority">
+                    Priorität:
+                    <span class="required">*</span>
+                </label>
+                <div class="side-by-side margin">
+                    <select name="project_priority">
+                        <c:forEach items="${statuses}" var="status">
+                            <option value="${status}" ${project_form.values["project_status"][0] == status ? 'selected' : ''}>
+                                <c:out value="${status.label}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
 
                 <label for="project_short_text">
                     Projektbezeichnung:

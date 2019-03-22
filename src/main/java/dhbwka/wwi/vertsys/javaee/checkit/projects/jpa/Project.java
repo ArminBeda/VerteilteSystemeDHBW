@@ -64,6 +64,10 @@ public class Project implements Serializable {
     @Enumerated(EnumType.STRING)
     @NotNull
     private ProjectStatus status = ProjectStatus.OPEN;
+    
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private Priority priority = Priority.LOW_PRIORITY;
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Project() {
@@ -143,6 +147,15 @@ public class Project implements Serializable {
     public void setStatus(ProjectStatus status) {
         this.status = status;
     }
+    
+        public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+    
     //</editor-fold>
 
 }
