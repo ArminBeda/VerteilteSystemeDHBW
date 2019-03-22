@@ -57,9 +57,15 @@ public class Project implements Serializable {
 
     @NotNull(message = "Das Datum darf nicht leer sein.")
     private Date dueDate;
+    
+     @NotNull(message = "Das Datum darf nicht leer sein.")
+    private Date beginDate;
 
     @NotNull(message = "Die Uhrzeit darf nicht leer sein.")
     private Time dueTime;
+
+    @NotNull(message = "Die Uhrzeit darf nicht leer sein.")
+    private Time beginTime;
 
     @Enumerated(EnumType.STRING)
     @NotNull
@@ -73,13 +79,15 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(User owner, Abteilung abteilung, String shortText, String longText, Date dueDate, Time dueTime) {
+    public Project(User owner, Abteilung abteilung, String shortText, String longText, Date dueDate, Time dueTime, Date beginDate, Time beginTime) {
         this.owner = owner;
         this.abteilung =abteilung;
         this.shortText = shortText;
         this.longText = longText;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+        this.beginDate = beginDate;
+        this.beginTime = beginTime;
     }
     //</editor-fold>
 
@@ -140,6 +148,21 @@ public class Project implements Serializable {
         this.dueTime = dueTime;
     }
 
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Time getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(Time beginTime) {
+        this.beginTime = beginTime;
+    }
     public ProjectStatus getStatus() {
         return status;
     }

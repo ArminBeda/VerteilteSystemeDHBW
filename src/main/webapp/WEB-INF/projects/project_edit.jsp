@@ -64,6 +64,16 @@
                     </select>
                 </div>
 
+                  <label for="project_begin_date">
+                    Projekt beginnt am:
+                    <span class="required">*</span>
+                </label>
+                <div class="side-by-side">
+                    <input type="text" name="project_begin_date" value="${project_form.values["project_begin_date"][0]}">
+                    <input type="text" name="project_begin_time" value="${project_form.values["project_begin_time"][0]}">
+                </div>
+
+                
                 <label for="project_due_date">
                     Projekt fällig am:
                     <span class="required">*</span>

@@ -115,6 +115,8 @@ public class ProjectEditServlet extends HttpServlet {
         String projectAbteilung = request.getParameter("project_abteilung");
         String projectDueDate = request.getParameter("project_due_date");
         String projectDueTime = request.getParameter("project_due_time");
+        String projectBeginDate = request.getParameter("project_begin_date");
+        String projectBeginTime = request.getParameter("project_begin_time");
         String projectStatus = request.getParameter("project_status");
         String projectPriority = request.getParameter("project_priority");
         String projectShortText = request.getParameter("project_short_text");
@@ -132,15 +134,27 @@ public class ProjectEditServlet extends HttpServlet {
 
         Date dueDate = WebUtils.parseDate(projectDueDate);
         Time dueTime = WebUtils.parseTime(projectDueTime);
+        Date beginDate = WebUtils.parseDate(projectBeginDate);
+        Time beginTime = WebUtils.parseTime(projectBeginTime);
 
         if (dueDate != null) {
             project.setDueDate(dueDate);
         } else {
             errors.add("Das Datum muss dem Format dd.mm.yyyy entsprechen.");
         }
+        if (beginDate != null) {
+            project.setBeginDate(beginDate);
+        } else {
+            errors.add("Das Datum muss dem Format dd.mm.yyyy entsprechen.");
+        }
 
         if (dueTime != null) {
             project.setDueTime(dueTime);
+        } else {
+            errors.add("Die Uhrzeit muss dem Format hh:mm:ss entsprechen.");
+        }
+         if (beginTime != null) {
+            project.setBeginTime(beginTime);
         } else {
             errors.add("Die Uhrzeit muss dem Format hh:mm:ss entsprechen.");
         }
@@ -212,6 +226,8 @@ public class ProjectEditServlet extends HttpServlet {
         project.setOwner(this.userBean.getCurrentUser());
         project.setDueDate(new Date(System.currentTimeMillis()));
         project.setDueTime(new Time(System.currentTimeMillis()));
+          project.setBeginDate(new Date(System.currentTimeMillis()));
+        project.setBeginTime(new Time(System.currentTimeMillis()));
 
         // ID aus der URL herausschneiden
         String projectId = request.getPathInfo();
@@ -262,9 +278,16 @@ public class ProjectEditServlet extends HttpServlet {
         values.put("project_due_date", new String[]{
             WebUtils.formatDate(project.getDueDate())
         });
-
+        
+        values.put("project_begin_date", new String[]{
+            WebUtils.formatDate(project.getBeginDate())
+        });
         values.put("project_due_time", new String[]{
             WebUtils.formatTime(project.getDueTime())
+        });
+ 
+        values.put("project_begin_time", new String[]{
+            WebUtils.formatTime(project.getBeginTime())
         });
 
         values.put("project_status", new String[]{
