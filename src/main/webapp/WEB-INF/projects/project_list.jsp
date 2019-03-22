@@ -87,6 +87,7 @@
                             <th>Status</th>
                             <th>Priorität</th>
                             <th>Fällig am</th>
+                            <th>Begintt am</th>
                             
                         </tr>
                     </thead>
@@ -113,6 +114,12 @@
                                 <c:out value="${utils.formatDate(project.dueDate)}"/>
                                 <c:out value="${utils.formatTime(project.dueTime)}"/>
                             </td>
+                            
+                             <td>
+                                <c:out value="${utils.formatDate(project.beginDate)}"/>
+                                <c:out value="${utils.formatTime(project.beginTime)}"/>
+                            </td>
+                            
                         </tr>
                     </c:forEach>
                 </table>
