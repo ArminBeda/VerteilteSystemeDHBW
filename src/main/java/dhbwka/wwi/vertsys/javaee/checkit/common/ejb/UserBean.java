@@ -53,6 +53,26 @@ public class UserBean {
         user.addToGroup("app-user");
         em.persist(user);
     }
+    
+        /**
+     *
+     * @param username
+     * @param vorname
+     * @param nachname
+     * @param password
+     * @throws UserBean.UserAlreadyExistsException
+     */
+    public void signup(String username, String vorname, String nachname, String password) throws UserAlreadyExistsException {
+        if (em.find(User.class, username) != null) {
+            throw new UserAlreadyExistsException("Der Benutzername $B ist bereits vergeben.".replace("$B", username));
+        }
+
+        User user = new User(username, vorname, nachname, password);
+        user.addToGroup("app-user");
+        em.persist(user);
+    }
+    
+    
 
     /**
      * Passwort ändern (ohne zu speichern)
