@@ -92,6 +92,7 @@
                     <c:forEach items="${tasks}" var="task">
                         <tr>
                             <td>
+                            
                                 <a href="<c:url value="/app/tasks/task/${task.id}/"/>">
                                     <c:out value="${task.shortText}"/>
                                 </a>
