@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -224,9 +225,10 @@ public class ProjectEditServlet extends HttpServlet {
         // Zunächst davon ausgehen, dass ein neuer Satz angelegt werden soll
         Project project = new Project();
         project.setOwner(this.userBean.getCurrentUser());
-        project.setDueDate(new Date(System.currentTimeMillis()));
+       
+        project.setDueDate(new Date(System.currentTimeMillis() + 86400000 ) );
         project.setDueTime(new Time(System.currentTimeMillis()));
-          project.setBeginDate(new Date(System.currentTimeMillis()));
+        project.setBeginDate(new Date(System.currentTimeMillis()));
         project.setBeginTime(new Time(System.currentTimeMillis()));
 
         // ID aus der URL herausschneiden
