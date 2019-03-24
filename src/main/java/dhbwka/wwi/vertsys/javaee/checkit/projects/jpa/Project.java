@@ -58,7 +58,7 @@ public class Project implements Serializable {
     @NotNull(message = "Das Datum darf nicht leer sein.")
     private Date dueDate;
     
-     @NotNull(message = "Das Datum darf nicht leer sein.")
+    @NotNull(message = "Das Datum darf nicht leer sein.")
     private Date beginDate;
 
     @NotNull(message = "Die Uhrzeit darf nicht leer sein.")
@@ -74,12 +74,17 @@ public class Project implements Serializable {
     @Enumerated(EnumType.STRING)
     @NotNull
     private Priority priority = Priority.LOW_PRIORITY;
+    
+    @NotNull
+    boolean extern;
+    
+    
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Project() {
     }
 
-    public Project(User owner, Abteilung abteilung, String shortText, String longText, Date dueDate, Time dueTime, Date beginDate, Time beginTime) {
+    public Project(User owner, Abteilung abteilung, String shortText, String longText, Date dueDate, Time dueTime, Date beginDate, Time beginTime, boolean extern) {
         this.owner = owner;
         this.abteilung =abteilung;
         this.shortText = shortText;
@@ -88,6 +93,7 @@ public class Project implements Serializable {
         this.dueTime = dueTime;
         this.beginDate = beginDate;
         this.beginTime = beginTime;
+        this.extern = extern;
     }
     //</editor-fold>
 
@@ -171,12 +177,20 @@ public class Project implements Serializable {
         this.status = status;
     }
     
-        public Priority getPriority() {
+   public Priority getPriority() {
         return priority;
     }
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+    
+    public void setExtern(boolean b) {
+        this.extern = b;
+    }
+    
+    public boolean getExtern(){
+        return this.extern;
     }
     
     //</editor-fold>

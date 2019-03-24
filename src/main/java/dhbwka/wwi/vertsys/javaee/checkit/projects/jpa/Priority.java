@@ -28,7 +28,7 @@ public enum Priority {
             case HIGH_PRIORITY:
                 return "Hohe Priorität";
             case MIDDLE_PRIORITY:
-                return "Mittlere PrioritäFt";
+                return "Mittlere Priorität";
             case LOW_PRIORITY:
                 return "Niedrige Priorität";
             default:

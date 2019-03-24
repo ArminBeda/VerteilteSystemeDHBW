@@ -13,6 +13,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+ 
+
 <template:base>
     <jsp:attribute name="title">
         <c:choose>
@@ -103,13 +105,24 @@
                 </label>
                 <div class="side-by-side margin">
                     <select name="project_priority">
-                        <c:forEach items="${statuses}" var="status">
-                            <option value="${status}" ${project_form.values["project_status"][0] == status ? 'selected' : ''}>
-                                <c:out value="${status.label}"/>
+                        <c:forEach items="${priorities}" var="priority">
+                            <option value="${priority}" ${project_form.values["project_priority"][0] == status ? 'selected' : ''}>
+                                <c:out value="${priority.label}"/>
                             </option>
                         </c:forEach>
                     </select>
                 </div>
+                
+                
+               <label for="project_is_extern">
+                    Extern:
+                           <input type="checkbox" name="project_is_extern"  onchange="setExtern()" value="${is_extern}" ${project_form.values["is_extern"][0] == checked ? 'checked' : ''}>
+
+                </label>
+                
+            
+       
+           
 
                 <label for="project_short_text">
                     Projektbezeichnung:
@@ -124,7 +137,10 @@
                 </label>
                 <div class="side-by-side">
                     <textarea name="project_long_text"><c:out value="${project_form.values['project_long_text'][0]}"/></textarea>
-                </div>
+                </div>              
+               
+                  
+                   
 
                 <%-- Button zum Abschicken --%>
                 <div class="side-by-side">
@@ -149,5 +165,9 @@
                 </ul>
             </c:if>
         </form>
+         
+            
+            
+            
     </jsp:attribute>
 </template:base>

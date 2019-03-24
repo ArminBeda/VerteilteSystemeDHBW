@@ -59,6 +59,7 @@ public class ProjectEditServlet extends HttpServlet {
         // Verfügbare Abteilungen und Stati für die Suchfelder ermitteln
         request.setAttribute("abteilungen", this.abteilungBean.findAllSorted());
         request.setAttribute("statuses", ProjectStatus.values());
+        request.setAttribute("priorities", Priority.values());
 
         // Zu bearbeitende Aufgabe einlesen
         HttpSession session = request.getSession();
@@ -122,6 +123,8 @@ public class ProjectEditServlet extends HttpServlet {
         String projectPriority = request.getParameter("project_priority");
         String projectShortText = request.getParameter("project_short_text");
         String projectLongText = request.getParameter("project_long_text");
+        String extErne =request.getParameter("project_is_extern");
+        boolean extern = request.getParameter("project_is_extern") != null;
 
         Project project = this.getRequestedProject(request);
 
@@ -166,6 +169,14 @@ public class ProjectEditServlet extends HttpServlet {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
         
+       try {
+            project.setPriority(Priority.valueOf(projectPriority));
+        } catch (IllegalArgumentException ex) {
+            errors.add("Der ausgewählte Priority ist nicht vorhanden.");
+        }
+       
+       
+        project.setExtern(extern);
 
         project.setShortText(projectShortText);
         project.setLongText(projectLongText);
@@ -308,9 +319,29 @@ public class ProjectEditServlet extends HttpServlet {
             project.getLongText()
         });
 
+        boolean ex = project.getExtern();
+        if (!project.getExtern()) {
+             values.put("is_extern", new String[]{
+            ""
+            });
+        }
+        else {
+              values.put("is_extern", null);
+        }
+        
+        System.out.println("Moin Leud");
+        
+       
+
         FormValues formValues = new FormValues();
         formValues.setValues(values);
         return formValues;
+    }
+    
+    
+   public void setExtern() {
+        int moin = 5;
+        moin = 7;
     }
 
 }
