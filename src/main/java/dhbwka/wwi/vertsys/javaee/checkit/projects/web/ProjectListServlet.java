@@ -72,6 +72,8 @@ public class ProjectListServlet extends HttpServlet {
 
         List<Project> projects = this.projectBean.search(searchText, abteilung, status);
         request.setAttribute("projects", projects);
+        
+        
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/projects/project_list.jsp").forward(request, response);
