@@ -11,6 +11,7 @@ package dhbwka.wwi.vertsys.javaee.checkit.dashboard.web;
 
 import dhbwka.wwi.vertsys.javaee.checkit.dashboard.ejb.DashboardContentProvider;
 import dhbwka.wwi.vertsys.javaee.checkit.dashboard.ejb.DashboardSection;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.AbteilungBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,17 @@ public class DashboardServlet extends HttpServlet {
     // Kacheln für Aufgaben
     @EJB(beanName = "projects")
     DashboardContentProvider projectContent;
+    
+    @EJB
+    AbteilungBean abteilungBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        abteilungBean.createTheFirstFourAbteilungen();
+        
 
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
         List<DashboardSection> sections = new ArrayList<>();

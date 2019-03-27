@@ -22,6 +22,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -66,11 +67,13 @@ public class Project implements Serializable {
 
     @NotNull(message = "Die Uhrzeit darf nicht leer sein.")
     private Time beginTime;
-
+        
+    
     @Enumerated(EnumType.STRING)
     @NotNull
     private ProjectStatus status = ProjectStatus.OPEN;
     
+   
     @Enumerated(EnumType.STRING)
     @NotNull
     private Priority priority = Priority.LOW_PRIORITY;

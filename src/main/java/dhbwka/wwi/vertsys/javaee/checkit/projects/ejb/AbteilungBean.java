@@ -35,4 +35,39 @@ public class AbteilungBean extends EntityBean<Abteilung, Long> {
     public List<Abteilung> findAllSorted() {
         return this.em.createQuery("SELECT c FROM Abteilung c ORDER BY c.name").getResultList();
     }
+    
+        public Abteilung saveNew(String name) {
+        Abteilung abteilung = new Abteilung(name);
+        em.persist(abteilung);
+        return em.merge(abteilung);
+    }
+        
+        
+     public List<Abteilung> findByName(String name) {
+        return em.createQuery("SELECT a FROM Abteilung a WHERE a.name = :name")
+                 .setParameter("name", name)
+                 .getResultList();
+    }
+     
+     public boolean existName(String name) {
+         List<Abteilung> list = this.findByName(name);
+         
+         return !list.isEmpty();
+     }
+     
+     public Abteilung saveNewIfNotExist(String name) {
+         if (existName(name)) {
+             return null;
+         }
+         else {
+             return saveNew(name);
+         }
+     }
+     
+     public void createTheFirstFourAbteilungen() {
+         this.saveNewIfNotExist("Financial Services");
+         this.saveNewIfNotExist("Automotive");
+         this.saveNewIfNotExist("Public Services");
+         this.saveNewIfNotExist("IT Innovation");
+     }
 }
