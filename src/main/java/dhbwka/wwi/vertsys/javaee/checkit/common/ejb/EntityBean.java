@@ -33,7 +33,7 @@ public abstract class EntityBean<Entity, EntityId> {
      * findById() aufgrund einer Einschränkung der Java Generics hier nicht
      * typsicher definieren.
      * 
-     * @param entityClass Klasse der zugrunde liegenden Entity
+     z* @param entityClass Klasse der zugrunde liegenden  Entity
      */
     public EntityBean(Class<Entity> entityClass) {
         this.entityClass = entityClass;

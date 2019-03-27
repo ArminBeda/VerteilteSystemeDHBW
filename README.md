@@ -100,7 +100,7 @@ Screenshots
             Aufgabe bearbeiten
         </td>
         <td>
-            Kategorien bearbeiten
+            Abteilungen bearbeiten
         </td>
     </tr>
 </table>
