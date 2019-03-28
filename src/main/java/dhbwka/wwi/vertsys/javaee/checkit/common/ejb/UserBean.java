@@ -82,10 +82,11 @@ public class UserBean {
      * @throws UserBean.InvalidCredentialsException
      */
     @RolesAllowed("app-user")
-    public void changePassword(User user, String oldPassword, String newPassword) throws InvalidCredentialsException {
-        if (user == null || !user.checkPassword(oldPassword)) {
+    public void changePassword(User user, String newPassword) throws InvalidCredentialsException {
+        /*if (user == null || !user.checkPassword(oldPassword)) {
             throw new InvalidCredentialsException("Benutzername oder Passwort sind falsch.");
-        }
+        
+        }*/
 
         user.setPassword(newPassword);
     }
@@ -107,6 +108,9 @@ public class UserBean {
     @RolesAllowed("app-user")
     public User update(User user) {
         return em.merge(user);
+        
+        
+        
     }
 
     /**
@@ -127,6 +131,10 @@ public class UserBean {
 
         public InvalidCredentialsException(String message) {
             super(message);
+       
+        
+        
+        
         }
     }
 

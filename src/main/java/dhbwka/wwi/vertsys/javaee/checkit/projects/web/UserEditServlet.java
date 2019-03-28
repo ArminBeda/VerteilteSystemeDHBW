@@ -13,9 +13,14 @@ import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User;
 import dhbwka.wwi.vertsys.javaee.checkit.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Abteilung;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.MitarbeiterName;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +29,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import static jdk.internal.net.http.common.Log.errors;
 
 /**
  * Seite zum Anzeigen und Bearbeiten der Abteilungen. Die Seite besitzt ein
@@ -40,7 +46,7 @@ public class UserEditServlet extends HttpServlet{
     
     
     @EJB
-    UserBean userBean;
+    UserBean userbean;
 
     @EJB
     ValidationBean validationBean;
@@ -51,7 +57,43 @@ public class UserEditServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       
+      
+        
+/*// Verfügbare Abteilungen und Stati für die Suchfelder ermitteln
+        request.setAttribute("username", this.UserBean.findAllSorted());
+        request.setAttribute("statuses", ProjectStatus.values());
+        request.setAttribute("priorities", Priority.values());
+     request.setAttribute("mitarbeiterName", MitarbeiterName.values());
+        // Zu bearbeitende Aufgabe einlesen
+        HttpSession session = request.getSession();
+
+        Project project = this.getRequestedProject(request);
+        request.setAttribute("edit", project.getId() != 0);
+                                
+        if (session.getAttribute("project_form") == null) {
+            // Keine Formulardaten mit fehlerhaften Daten in der Session,
+            // daher Formulardaten aus dem Datenbankobjekt übernehmen
+            request.setAttribute("project_form", this.createProjectForm(project));
+        }
+
+        // Anfrage an die JSP weiterleiten
+        request.getRequestDispatcher("/WEB-INF/projects/project_edit.jsp").forward(request, response);
+        
+        session.removeAttribute("project_form");
+    }
+        
+        */
+        
+        
+        
+        String a_vorname = "User";
+        
+        request.setAttribute("a_vorname", a_vorname);
+        
+        
+        
+        
+        
     
             request.getRequestDispatcher("/WEB-INF/projects/user_edit.jsp").forward(request, response);
             
@@ -63,55 +105,51 @@ public class UserEditServlet extends HttpServlet{
             throws ServletException, IOException {
         
         // Formulareingaben auslesen        
-        String vornameNeu = request.getParameter("new_vorname");
-        String nachnameNeu = request.getParameter("new_nachname");
-        String password1Neu = request.getParameter("new_password1");
-        String password2Neu = request.getParameter("new_password2");
+        User user = this.userbean.getCurrentUser();
+        
+        
+        String vorname = request.getParameter("vorname");
+        String nachname = request.getParameter("nachname");
+      // String altesPassword = request.getParameter("altesPassword"); 
+       String password1 = request.getParameter("password1");
+        String password2 = request.getParameter("password2");
 
-       /* 
-        // Eingaben prüfen
-        User user = new User(vornameNeu, nachnameNeu, password1Neu);
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
         
-        if (password1Neu != null && password2Neu != null && !password1Neu.equals(password2Neu)) {
+        if (password1 != null && password2 != null && !password1.equals(password2)) {
             errors.add("Die beiden Passwörter stimmen nicht überein.");
         }
-        */
+       
         
         
-        /*
-        // Neuen Benutzer anlegen
-        if (errors.isEmpty()) {
-            try {
-                this.userBean.signup(username, vorname, nachname, password1);
-            } catch (UserBean.UserAlreadyExistsException ex) {
-                errors.add(ex.getMessage());
-            }
-        }
-        */
         
-        /*
+        try {
+            this.userbean.changePassword(user, password1);
         
-        // Weiter zur nächsten Seite
-        if (errors.isEmpty()) {
-            // Keine Fehler: Startseite aufrufen
-            request.login(username, password1);
-            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
-        } else {
-            // Fehler: Formuler erneut anzeigen
-            FormValues formValues = new FormValues();
-            formValues.setValues(request.getParameterMap());
-            formValues.setErrors(errors);
             
-            HttpSession session = request.getSession();
-            session.setAttribute("signup_form", formValues);
-            
-            response.sendRedirect(request.getRequestURI());
+         } catch (UserBean.InvalidCredentialsException ex) {
+            Logger.getLogger(UserEditServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    */
-    }}
     
+   
+    if (errors.isEmpty()) {
+        this.userbean.update( user);
+        }
+        
+    
+    
+            
+            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+        
+    
+    
+    
+    
+    }
+
+    
+}  
     
     
     

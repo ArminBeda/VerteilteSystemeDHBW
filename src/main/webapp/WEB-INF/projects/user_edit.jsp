@@ -52,7 +52,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
-                        <input type="text" name="new_vorname" value="${signup_form.values["new_vorname"][0]}">
+                        <input type="text" name="vorname" value="${signup_form.values["new_vorname"][0]}">
                     </div>
                     
                     <label for="new_nachname">
@@ -60,15 +60,24 @@
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
-                        <input type="text" name="new_nachname" value="${signup_form.values["new_nachname"][0]}">
+                        <input type="text" name="nachname" value="${signup_form.values["new_nachname"][0]}">
                     </div>
 
+                   
+                    <!--<label for="signup_password1">
+                       Altes Passwort:
+                        <span class="required">*</span>
+                    </label>
+                    <div class="side-by-side">
+                        <input type="password" name="altesPassword" value="${signup_form.values["altesPassword"][0]}">
+                    </div>
+                    -->
                     <label for="signup_password1">
                        Neues Passwort:
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
-                        <input type="password" name="new_password1" value="${signup_form.values["new_password1"][0]}">
+                        <input type="password" name="password1" value="${signup_form.values["password1"][0]}">
                     </div>
 
                     <label for="new_password2">
@@ -76,7 +85,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
-                        <input type="password" name="new_password2" value="${signup_form.values["new_password2"][0]}">
+                        <input type="password" name="password2" value="${signup_form.values["password2"][0]}">
                     </div>
 
                     <%-- Button zum Abschicken --%>
