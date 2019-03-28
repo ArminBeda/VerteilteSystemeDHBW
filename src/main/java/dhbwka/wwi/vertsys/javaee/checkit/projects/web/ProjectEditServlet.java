@@ -317,7 +317,8 @@ public class ProjectEditServlet extends HttpServlet {
           values.put("project_priority", new String[]{
             project.getPriority().toString()
         });
-                     values.put("mitarbeiterName", new String[]{
+        
+          values.put("mitarbeiterName", new String[]{
             project.getMitarbeitername().toString()
         });
 
