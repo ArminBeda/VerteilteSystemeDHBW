@@ -18,7 +18,9 @@ import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -83,13 +85,11 @@ public class UserEditServlet extends HttpServlet{
     }
         
         */
+
+       
         
         
-        
-        String a_vorname = "User";
-        
-        request.setAttribute("a_vorname", a_vorname);
-        
+    request.setAttribute("signup_form", this.createUserForm(userbean.getCurrentUser()));
         
         
         
@@ -110,8 +110,8 @@ public class UserEditServlet extends HttpServlet{
         
         String vorname = request.getParameter("vorname");
         String nachname = request.getParameter("nachname");
-      // String altesPassword = request.getParameter("altesPassword"); 
-       String password1 = request.getParameter("password1");
+        //String altesPassword = request.getParameter("altesPassword"); 
+        String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
 
         List<String> errors = this.validationBean.validate(user);
@@ -120,36 +120,53 @@ public class UserEditServlet extends HttpServlet{
         if (password1 != null && password2 != null && !password1.equals(password2)) {
             errors.add("Die beiden Passwörter stimmen nicht überein.");
         }
+        
+       user.setVorname(vorname);
+       user.setNachname(nachname);
+        
        
         
         
-        
+        if (password1 != null && password1 != "" && errors.isEmpty()) {
         try {
             this.userbean.changePassword(user, password1);
-        
-            
          } catch (UserBean.InvalidCredentialsException ex) {
             Logger.getLogger(UserEditServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-   
-    if (errors.isEmpty()) {
-        this.userbean.update( user);
         }
         
-    
-    
-            
-            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+     if (errors.isEmpty()) {
+            this.userbean.update(user);
+        }
+   
         
-    
-    
-    
-    
+      
+            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+      
     }
-
     
-}  
+    
+       private FormValues createUserForm(User owner) {
+        Map<String, String[]> values = new HashMap<>();
+
+        values.put("new_vorname", new String[]{
+            owner.getVorname()
+        });
+        
+       values.put("new_nachname", new String[]{
+            owner.getNachname()
+        });
+
+        
+        
+       
+
+        FormValues formValues = new FormValues();
+        formValues.setValues(values);
+        return formValues;
+    } 
+}
+
     
     
     

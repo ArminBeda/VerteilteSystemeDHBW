@@ -87,8 +87,9 @@ public class UserBean {
             throw new InvalidCredentialsException("Benutzername oder Passwort sind falsch.");
         
         }*/
-
+        
         user.setPassword(newPassword);
+        em.merge(user);
     }
     
     /**

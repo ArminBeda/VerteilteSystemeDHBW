@@ -51,6 +51,22 @@ public class User implements Serializable {
     //@Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
     //@NotNull(message = "Der Benutzername darf nicht leer sein.")
     private String vorname;
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
     
     @Column(name = "NACHNAME", length = 64)
     //@Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
@@ -163,6 +179,7 @@ public class User implements Serializable {
      * @param password Neues Passwort
      */
     public void setPassword(String password) {
+       
         this.password.password = password;
         this.passwordHash = this.hashPassword(password);
     }
