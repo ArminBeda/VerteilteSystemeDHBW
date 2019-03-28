@@ -144,10 +144,7 @@ public class Project implements Serializable {
     public void setLongText(String longText) {
         this.longText = longText;
     }
-   public MitarbeiterName getMitarbeitername (){
-       return mitarbeiterName;
-   }
-
+ 
     public Date getDueDate() {
         return dueDate;
     }
@@ -204,5 +201,13 @@ public class Project implements Serializable {
     }
     
     //</editor-fold>
+
+   public MitarbeiterName getMitarbeitername (){
+       return mitarbeiterName;
+   }
+    public void setMitarbeiterName(MitarbeiterName mn) {
+        this. mitarbeiterName = mitarbeiterName;
+        
+    }
 
 }

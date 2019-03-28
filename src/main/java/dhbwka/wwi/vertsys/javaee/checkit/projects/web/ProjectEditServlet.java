@@ -61,7 +61,7 @@ public class ProjectEditServlet extends HttpServlet {
         request.setAttribute("abteilungen", this.abteilungBean.findAllSorted());
         request.setAttribute("statuses", ProjectStatus.values());
         request.setAttribute("priorities", Priority.values());
-     request.setAttribute("mitarbeiterName", MitarbeiterName.values());
+        request.setAttribute("mitarbeiterName", MitarbeiterName.values());
         // Zu bearbeitende Aufgabe einlesen
         HttpSession session = request.getSession();
 
@@ -72,6 +72,7 @@ public class ProjectEditServlet extends HttpServlet {
             // Keine Formulardaten mit fehlerhaften Daten in der Session,
             // daher Formulardaten aus dem Datenbankobjekt übernehmen
             request.setAttribute("project_form", this.createProjectForm(project));
+            
         }
 
         // Anfrage an die JSP weiterleiten
@@ -170,7 +171,11 @@ public class ProjectEditServlet extends HttpServlet {
         } catch (IllegalArgumentException ex) {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
-        
+         try {
+            project.setMitarbeiterName(MitarbeiterName.valueOf(mitarbeiterName));
+        } catch (IllegalArgumentException ex) {
+            errors.add("Der ausgewählte Mitarbeiter ist nicht vorhanden");
+        }
        try {
             project.setPriority(Priority.valueOf(projectPriority));
         } catch (IllegalArgumentException ex) {

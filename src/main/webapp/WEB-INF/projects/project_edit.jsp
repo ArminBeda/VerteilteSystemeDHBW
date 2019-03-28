@@ -105,7 +105,7 @@
                     </select>
                 </div>
                 
-                                 <label for="project_status">
+                <label for="project_status">
                     Projektmitglieder:
                     <span class="required">*</span>
                 </label>
@@ -164,7 +164,7 @@
                 <div class="side-by-side margin">
                     <select name="project_priority">
                         <c:forEach items="${priorities}" var="priority">
-                            <option value="${priority}" ${project_form.values["project_priority"][0] == status ? 'selected' : ''}>
+                            <option value="${priority}" ${project_form.values["project_priority"][0] == priority ? 'selected' : ''}>
                                 <c:out value="${priority.label}"/>
                             </option>
                         </c:forEach>

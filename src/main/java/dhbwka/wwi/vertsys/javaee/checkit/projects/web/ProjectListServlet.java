@@ -12,6 +12,7 @@ package dhbwka.wwi.vertsys.javaee.checkit.projects.web;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.AbteilungBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.ProjectBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Abteilung;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.MitarbeiterName;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
@@ -43,12 +44,13 @@ public class ProjectListServlet extends HttpServlet {
         // Verfügbare Abteilungen und Stati für die Suchfelder ermitteln
         request.setAttribute("abteilungen", this.abteilungBean.findAllSorted());
         request.setAttribute("statuses", ProjectStatus.values());
+        request.setAttribute("mitarbeiterName", MitarbeiterName.values());
 
         // Suchparameter aus der URL auslesen
         String searchText = request.getParameter("search_text");
         String searchAbteilung = request.getParameter("search_abteilung");
         String searchStatus = request.getParameter("search_status");
-
+            String searchMitarbeiterName = request.getParameter("search_mitarbeiterName");
         // Anzuzeigende Aufgaben suchen
         Abteilung abteilung = null;
         ProjectStatus status = null;
