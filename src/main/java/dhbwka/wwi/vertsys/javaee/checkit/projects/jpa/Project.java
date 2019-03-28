@@ -73,7 +73,7 @@ public class Project implements Serializable {
     @NotNull
     private ProjectStatus status = ProjectStatus.OPEN;
     
-       @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @NotNull
     private MitarbeiterName mitarbeiterName = MitarbeiterName.MITARBEITER1;
 
@@ -206,7 +206,7 @@ public class Project implements Serializable {
        return mitarbeiterName;
    }
     public void setMitarbeiterName(MitarbeiterName mn) {
-        this. mitarbeiterName = mitarbeiterName;
+        this.mitarbeiterName = mn;
         
     }
 
