@@ -15,6 +15,7 @@ import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.AbteilungBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.ProjectBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.ValidationBean;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.MitarbeiterName;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.ProjectStatus;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Priority;
@@ -60,7 +61,7 @@ public class ProjectEditServlet extends HttpServlet {
         request.setAttribute("abteilungen", this.abteilungBean.findAllSorted());
         request.setAttribute("statuses", ProjectStatus.values());
         request.setAttribute("priorities", Priority.values());
-
+     request.setAttribute("mitarbeiterName", MitarbeiterName.values());
         // Zu bearbeitende Aufgabe einlesen
         HttpSession session = request.getSession();
 
@@ -125,7 +126,8 @@ public class ProjectEditServlet extends HttpServlet {
         String projectLongText = request.getParameter("project_long_text");
         String extErne =request.getParameter("project_is_extern");
         boolean extern = request.getParameter("project_is_extern") != null;
-
+        String mitarbeiterName = request.getParameter("mitarbeiterName");
+        
         Project project = this.getRequestedProject(request);
 
         if (projectAbteilung != null && !projectAbteilung.trim().isEmpty()) {
@@ -310,6 +312,10 @@ public class ProjectEditServlet extends HttpServlet {
           values.put("project_priority", new String[]{
             project.getPriority().toString()
         });
+                     values.put("mitarbeiterName", new String[]{
+            project.getMitarbeitername().toString()
+        });
+
 
         values.put("project_short_text", new String[]{
             project.getShortText()

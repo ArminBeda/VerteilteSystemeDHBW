@@ -73,7 +73,11 @@ public class Project implements Serializable {
     @NotNull
     private ProjectStatus status = ProjectStatus.OPEN;
     
-   
+       @Enumerated(EnumType.STRING)
+    @NotNull
+    private MitarbeiterName mitarbeiterName = MitarbeiterName.MITARBEITER1;
+
+       
     @Enumerated(EnumType.STRING)
     @NotNull
     private Priority priority = Priority.LOW_PRIORITY;
@@ -140,6 +144,9 @@ public class Project implements Serializable {
     public void setLongText(String longText) {
         this.longText = longText;
     }
+   public MitarbeiterName getMitarbeitername (){
+       return mitarbeiterName;
+   }
 
     public Date getDueDate() {
         return dueDate;
