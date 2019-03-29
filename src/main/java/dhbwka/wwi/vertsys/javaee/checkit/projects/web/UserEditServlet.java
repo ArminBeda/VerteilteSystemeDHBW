@@ -11,6 +11,7 @@ import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.AbteilungBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.ProjectBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User.Password;
 import dhbwka.wwi.vertsys.javaee.checkit.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Abteilung;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.MitarbeiterName;
@@ -113,12 +114,47 @@ public class UserEditServlet extends HttpServlet{
         //String altesPassword = request.getParameter("altesPassword"); 
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
-
-        List<String> errors = this.validationBean.validate(user);
-        this.validationBean.validate(user.getPassword(), errors);
         
-        if (password1 != null && password2 != null && !password1.equals(password2)) {
+    //    List<String> errors = this.validationBean.validate(user);
+    //    Password p = user.getPassword();
+     //   this.validationBean.validate(user.getPassword(), errors);
+        User testuser = new User("ttttest", vorname, nachname, "testpassword");
+        List<String> errors = this.validationBean.validate(testuser);
+        Password p = testuser.getPassword();
+        
+   
+     
+     
+        if (password1.equals("")){
+            password1 = null;
+        }
+        if (password2.equals("")){
+            password2 = null;
+        }
+        
+        
+        
+        if (password1 != null && 
+            password2 != null &&
+            !password1.equals("") &&
+            !password2.equals("") &&
+            !password1.equals(password2)) {
             errors.add("Die beiden Passwörter stimmen nicht überein.");
+        }
+        
+        //When the user changes the account we have to validate the new dates (e.g) max 64 character
+        
+        if ((password1 == null && password2 == null) || (password1.equals("") && password2.equals("") ) ) {
+         //If the user do not want to change the password, we only want to check a validity of the vorname and surname
+         //If we try to validate currentuser, it cannot be validated, propably because of the Hashcode of the password
+         //We will test it with testpassword
+         this.validationBean.validate(testuser.getPassword(), errors);
+        } 
+        else {
+         //If the user write a password in, we change the password of the testuser
+         testuser.setPassword(password1);
+         //and then we do the validation
+         this.validationBean.validate(testuser.getPassword(), errors);
         }
         
        user.setVorname(vorname);
@@ -127,7 +163,7 @@ public class UserEditServlet extends HttpServlet{
        
         
         
-        if (password1 != null && password1 != "" && errors.isEmpty()) {
+        if (password1 != null && !password1.equals("") && errors.isEmpty()) {
         try {
             this.userbean.changePassword(user, password1);
          } catch (UserBean.InvalidCredentialsException ex) {
@@ -135,13 +171,26 @@ public class UserEditServlet extends HttpServlet{
         }
         }
         
+
+        
      if (errors.isEmpty()) {
             this.userbean.update(user);
+            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+       } else {
+            // Fehler: Formuler erneut anzeigenx
+            FormValues formValues = new FormValues();
+            formValues.setValues(request.getParameterMap());
+            formValues.setErrors(errors);
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("signup_form", formValues);
+            
+            response.sendRedirect(request.getRequestURI());
         }
    
         
       
-            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+            
       
     }
     

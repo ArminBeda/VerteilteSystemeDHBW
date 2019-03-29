@@ -12,6 +12,7 @@ package dhbwka.wwi.vertsys.javaee.checkit.common.web;
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User.Password;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -63,6 +64,7 @@ public class SignUpServlet extends HttpServlet {
         
         // Eingaben prüfen
         User user = new User(username, vorname, nachname, password1);
+        Password p = user.getPassword();
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
         

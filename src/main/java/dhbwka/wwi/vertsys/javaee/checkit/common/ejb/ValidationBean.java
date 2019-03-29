@@ -40,6 +40,9 @@ public class ValidationBean {
      */
     public <T> List<String> validate(T object) {
         List<String> messages = new ArrayList<>();
+        T userobject = object;
+        
+        List<String> tesobject = this.validate(object, messages);
         return this.validate(object, messages);
     }
     
@@ -53,6 +56,9 @@ public class ValidationBean {
      * @return Selbe Liste wie messages
      */
     public <T> List<String> validate(T object, List<String> messages) {
+        
+        T pwobject = object;
+        
         Set<ConstraintViolation<T>> violations = this.validator.validate(object);
         
         violations.forEach((ConstraintViolation<T> violation) -> {
