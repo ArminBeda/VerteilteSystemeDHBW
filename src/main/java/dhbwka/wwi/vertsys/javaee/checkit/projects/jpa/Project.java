@@ -75,7 +75,63 @@ public class Project implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @NotNull
-    private MitarbeiterName mitarbeiterName = MitarbeiterName.MITARBEITER1;
+    private MitarbeiterName mitarbeiterName1 = MitarbeiterName.MITARBEITER1;
+    
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private MitarbeiterName mitarbeiterName2 = MitarbeiterName.MITARBEITER1;
+
+    public MitarbeiterName getMitarbeiterName1() {
+        return mitarbeiterName1;
+    }
+
+    public void setMitarbeiterName1(MitarbeiterName mitarbeiterName1) {
+        this.mitarbeiterName1 = mitarbeiterName1;
+    }
+
+    public MitarbeiterName getMitarbeiterName2() {
+        return mitarbeiterName2;
+    }
+
+    public void setMitarbeiterName2(MitarbeiterName mitarbeiterName2) {
+        this.mitarbeiterName2 = mitarbeiterName2;
+    }
+
+    public MitarbeiterName getMitarbeiterName3() {
+        return mitarbeiterName3;
+    }
+
+    public void setMitarbeiterName3(MitarbeiterName mitarbeiterName3) {
+        this.mitarbeiterName3 = mitarbeiterName3;
+    }
+
+    public MitarbeiterName getMitarbeiterName4() {
+        return mitarbeiterName4;
+    }
+
+    public void setMitarbeiterName4(MitarbeiterName mitarbeiterName4) {
+        this.mitarbeiterName4 = mitarbeiterName4;
+    }
+
+    public MitarbeiterName getMitarbeiterName5() {
+        return mitarbeiterName5;
+    }
+
+    public void setMitarbeiterName5(MitarbeiterName mitarbeiterName5) {
+        this.mitarbeiterName5 = mitarbeiterName5;
+    }
+    
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private MitarbeiterName mitarbeiterName3 = MitarbeiterName.MITARBEITER1;
+    
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private MitarbeiterName mitarbeiterName4 = MitarbeiterName.MITARBEITER1;
+    
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private MitarbeiterName mitarbeiterName5 = MitarbeiterName.MITARBEITER1;
 
        
     @Enumerated(EnumType.STRING)
@@ -202,12 +258,6 @@ public class Project implements Serializable {
     
     //</editor-fold>
 
-   public MitarbeiterName getMitarbeitername (){
-       return mitarbeiterName;
-   }
-    public void setMitarbeiterName(MitarbeiterName mn) {
-        this.mitarbeiterName = mn;
-        
-    }
+ 
 
 }

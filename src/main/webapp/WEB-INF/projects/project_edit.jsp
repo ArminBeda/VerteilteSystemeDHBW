@@ -111,46 +111,46 @@
                 </label>
                 
                 <div class="side-by-side margin">
-                    <select name="mitarbeiterName">
-                        <c:forEach items="${mitarbeiterName}" var="mitarbeiterName">
-                            <option value="${mitarbeiterName}" ${project_form.values["mitarbeiterName"][0] == mitarbeiterName ? 'selected' : ''}>
-                                <c:out value="${mitarbeiterName.label}"/>
+                    <select name="mitarbeiterName1">
+                        <c:forEach items="${mitarbeiterNamen}" var="mitarbeiterName1">
+                            <option value="${mitarbeiterName1}" ${project_form.values["mitarbeiterName1"][0] == mitarbeiterName1 ? 'selected' : ''}>
+                                <c:out value="${mitarbeiterName1.label}"/>
                             </option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="side-by-side margin">
-                    <select name="mitarbeiterName">
-                        <c:forEach items="${mitarbeiterName}" var="mitarbeiterName">
-                            <option value="${mitarbeiterName}" ${project_form.values["mitarbeiterName"][0] == mitarbeiterName ? 'selected' : ''}>
-                                <c:out value="${mitarbeiterName.label}"/>
+                    <select name="mitarbeiterName2">
+                        <c:forEach items="${mitarbeiterNamen}" var="mitarbeiterName2">
+                            <option value="${mitarbeiterName2}" ${project_form.values["mitarbeiterName2"][0] == mitarbeiterName2 ? 'selected' : ''}>
+                                <c:out value="${mitarbeiterName2.label}"/>
                             </option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="side-by-side margin">
-                    <select name="mitarbeiterName">
-                        <c:forEach items="${mitarbeiterName}" var="mitarbeiterName">
-                            <option value="${mitarbeiterName}" ${project_form.values["mitarbeiterName"][0] == mitarbeiterName ? 'selected' : ''}>
-                                <c:out value="${mitarbeiterName.label}"/>
+                    <select name="mitarbeiterName3">
+                        <c:forEach items="${mitarbeiterNamen}" var="mitarbeiterName3">
+                            <option value="${mitarbeiterName3}" ${project_form.values["mitarbeiterName3"][0] == mitarbeiterName3 ? 'selected' : ''}>
+                                <c:out value="${mitarbeiterName3.label}"/>
                             </option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="side-by-side margin">
-                    <select name="mitarbeiterName">
-                        <c:forEach items="${mitarbeiterName}" var="mitarbeiterName">
-                            <option value="${mitarbeiterName}" ${project_form.values["mitarbeiterName"][0] == mitarbeiterName ? 'selected' : ''}>
-                                <c:out value="${mitarbeiterName.label}"/>
+                    <select name="mitarbeiterName4">
+                        <c:forEach items="${mitarbeiterNamen}" var="mitarbeiterName4">
+                            <option value="${mitarbeiterName4}" ${project_form.values["mitarbeiterName4"][0] == mitarbeiterName4 ? 'selected' : ''}>
+                                <c:out value="${mitarbeiterName4.label}"/>
                             </option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="side-by-side margin">
-                    <select name="mitarbeiterName">
-                        <c:forEach items="${mitarbeiterName}" var="mitarbeiterName">
-                            <option value="${mitarbeiterName}" ${project_form.values["mitarbeiterName"][0] == mitarbeiterName ? 'selected' : ''}>
-                                <c:out value="${mitarbeiterName.label}"/>
+                    <select name="mitarbeiterName5">
+                        <c:forEach items="${mitarbeiterNamen}" var="mitarbeiterName5">
+                            <option value="${mitarbeiterName5}" ${project_form.values["mitarbeiterName5"][0] == mitarbeiterName5 ? 'selected' : ''}>
+                                <c:out value="${mitarbeiterName5.label}"/>
                             </option>
                         </c:forEach>
                     </select>

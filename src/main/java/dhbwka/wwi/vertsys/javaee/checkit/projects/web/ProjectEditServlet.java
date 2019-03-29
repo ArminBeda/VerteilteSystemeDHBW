@@ -61,7 +61,7 @@ public class ProjectEditServlet extends HttpServlet {
         request.setAttribute("abteilungen", this.abteilungBean.findAllSorted());
         request.setAttribute("statuses", ProjectStatus.values());
         request.setAttribute("priorities", Priority.values());
-        request.setAttribute("mitarbeiterName", MitarbeiterName.values());
+        request.setAttribute("mitarbeiterNamen", MitarbeiterName.values());
         // Zu bearbeitende Aufgabe einlesen
         HttpSession session = request.getSession();
 
@@ -127,7 +127,11 @@ public class ProjectEditServlet extends HttpServlet {
         String projectLongText = request.getParameter("project_long_text");
         String extErne =request.getParameter("project_is_extern");
         boolean extern = request.getParameter("project_is_extern") != null;
-        String mitarbeiterName = request.getParameter("mitarbeiterName");
+        String mitarbeiterName1 = request.getParameter("mitarbeiterName1");
+        String mitarbeiterName2 = request.getParameter("mitarbeiterName2");
+        String mitarbeiterName3 = request.getParameter("mitarbeiterName3");
+        String mitarbeiterName4 = request.getParameter("mitarbeiterName4");
+        String mitarbeiterName5 = request.getParameter("mitarbeiterName5");
         
         Project project = this.getRequestedProject(request);
 
@@ -172,7 +176,27 @@ public class ProjectEditServlet extends HttpServlet {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
          try {
-            project.setMitarbeiterName(MitarbeiterName.valueOf(mitarbeiterName));
+            project.setMitarbeiterName1(MitarbeiterName.valueOf(mitarbeiterName1));
+        } catch (IllegalArgumentException ex) {
+            errors.add("Der ausgewählte Mitarbeiter ist nicht vorhanden");
+        }
+        try {
+            project.setMitarbeiterName2(MitarbeiterName.valueOf(mitarbeiterName2));
+        } catch (IllegalArgumentException ex) {
+            errors.add("Der ausgewählte Mitarbeiter ist nicht vorhanden");
+        }
+        try {
+            project.setMitarbeiterName3(MitarbeiterName.valueOf(mitarbeiterName3));
+        } catch (IllegalArgumentException ex) {
+            errors.add("Der ausgewählte Mitarbeiter ist nicht vorhanden");
+        }
+        try {
+            project.setMitarbeiterName4(MitarbeiterName.valueOf(mitarbeiterName4));
+        } catch (IllegalArgumentException ex) {
+            errors.add("Der ausgewählte Mitarbeiter ist nicht vorhanden");
+        }
+        try {
+            project.setMitarbeiterName5(MitarbeiterName.valueOf(mitarbeiterName5));
         } catch (IllegalArgumentException ex) {
             errors.add("Der ausgewählte Mitarbeiter ist nicht vorhanden");
         }
@@ -318,9 +342,26 @@ public class ProjectEditServlet extends HttpServlet {
             project.getPriority().toString()
         });
         
-          values.put("mitarbeiterName", new String[]{
-            project.getMitarbeitername().toString()
+          values.put("mitarbeiterName1", new String[]{
+            project.getMitarbeiterName1().toString()
         });
+          
+           values.put("mitarbeiterName2", new String[]{
+            project.getMitarbeiterName2().toString()
+        });
+           
+            values.put("mitarbeiterName3", new String[]{
+            project.getMitarbeiterName3().toString()
+        });
+          
+            values.put("mitarbeiterName4", new String[]{
+            project.getMitarbeiterName4().toString()
+        });
+            
+            values.put("mitarbeiterName5", new String[]{
+            project.getMitarbeiterName5().toString()
+        });
+   
 
 
         values.put("project_short_text", new String[]{
@@ -342,8 +383,6 @@ public class ProjectEditServlet extends HttpServlet {
         }
         
         System.out.println("Moin Leud");
-        
-       
 
         FormValues formValues = new FormValues();
         formValues.setValues(values);

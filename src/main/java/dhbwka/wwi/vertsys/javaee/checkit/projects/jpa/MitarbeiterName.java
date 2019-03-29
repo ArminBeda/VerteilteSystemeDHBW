@@ -27,7 +27,7 @@ public enum MitarbeiterName {
                 return "Yannick Grübel";
             case MITARBEITER4:
                 return "Lena Meyer";
-                case MITARBEITER5:
+            case MITARBEITER5:
                 return "Christine Herrlich";
                  case MITARBEITER6:
                 return "Gunter Fröhlich";
