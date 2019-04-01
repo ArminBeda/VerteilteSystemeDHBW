@@ -52,7 +52,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
-                        <input type="text" name="vorname" value="${signup_form.values["new_vorname"][0]}">
+                        <input type="text" name="new_vorname" value="${signup_form.values["new_vorname"][0]}">
                     </div>
                     
                     <label for="new_nachname">
@@ -60,7 +60,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
-                        <input type="text" name="nachname" value="${signup_form.values["new_nachname"][0]}">
+                        <input type="text" name="new_nachname" value="${signup_form.values["new_nachname"][0]}">
                     </div>
 
                    
@@ -95,7 +95,7 @@
                         </button>
                     </div>
                 </div>
-
+                    
                 <%-- Fehlermeldungen --%>
                 <c:if test="${!empty signup_form.errors}">
                     <ul class="errors">

@@ -52,53 +52,31 @@ public class UserEditServlet extends HttpServlet{
     UserBean userbean;
 
     @EJB
-    ValidationBean validationBean;
+    ValidationBean validationBean;   
     
     
-    
+    boolean errorVar = false;
     
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
       
-        
-/*// Verfügbare Abteilungen und Stati für die Suchfelder ermitteln
-        request.setAttribute("username", this.UserBean.findAllSorted());
-        request.setAttribute("statuses", ProjectStatus.values());
-        request.setAttribute("priorities", Priority.values());
-     request.setAttribute("mitarbeiterName", MitarbeiterName.values());
-        // Zu bearbeitende Aufgabe einlesen
+     if (!errorVar) {
+         request.setAttribute("signup_form", this.createUserForm(userbean.getCurrentUser(), request)); 
+      }
+
+      
+      RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/projects/user_edit.jsp");
+      
+       
+        dispatcher.forward(request, response);
+      
+        // Alte Formulardaten aus der Session entfernen
         HttpSession session = request.getSession();
-
-        Project project = this.getRequestedProject(request);
-        request.setAttribute("edit", project.getId() != 0);
-                                
-        if (session.getAttribute("project_form") == null) {
-            // Keine Formulardaten mit fehlerhaften Daten in der Session,
-            // daher Formulardaten aus dem Datenbankobjekt übernehmen
-            request.setAttribute("project_form", this.createProjectForm(project));
-        }
-
-        // Anfrage an die JSP weiterleiten
-        request.getRequestDispatcher("/WEB-INF/projects/project_edit.jsp").forward(request, response);
-        
-        session.removeAttribute("project_form");
-    }
-        
-        */
+       
+       session.removeAttribute("signup_form");
 
        
-        
-        
-    request.setAttribute("signup_form", this.createUserForm(userbean.getCurrentUser()));
-        
-        
-        
-        
-    
-            request.getRequestDispatcher("/WEB-INF/projects/user_edit.jsp").forward(request, response);
-            
-    
+       
     } 
     
   @Override
@@ -109,8 +87,8 @@ public class UserEditServlet extends HttpServlet{
         User user = this.userbean.getCurrentUser();
         
         
-        String vorname = request.getParameter("vorname");
-        String nachname = request.getParameter("nachname");
+        String vorname = request.getParameter("new_vorname");
+        String nachname = request.getParameter("new_nachname");
         //String altesPassword = request.getParameter("altesPassword"); 
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
@@ -174,10 +152,15 @@ public class UserEditServlet extends HttpServlet{
 
         
      if (errors.isEmpty()) {
+         // Keine Fehler: User update, Startseite aufrufen 
             this.userbean.update(user);
             response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+            this.errorVar = false;
+           
        } else {
             // Fehler: Formuler erneut anzeigenx
+            this.errorVar = true;
+            
             FormValues formValues = new FormValues();
             formValues.setValues(request.getParameterMap());
             formValues.setErrors(errors);
@@ -188,15 +171,30 @@ public class UserEditServlet extends HttpServlet{
             response.sendRedirect(request.getRequestURI());
         }
    
-        
-      
-            
-      
     }
     
     
-       private FormValues createUserForm(User owner) {
+       private FormValues createUserForm(User owner, HttpServletRequest request) {
         Map<String, String[]> values = new HashMap<>();
+        
+      
+        
+        String vornameToSet;
+        String nachnameToSet;
+        
+        if (request.getParameter("new_vorname") == null || request.getParameter("new_vorname").equals("")) {
+            vornameToSet = owner.getVorname();
+        }
+        else {
+            vornameToSet = request.getParameter("new_vorname");
+        }
+        
+        if (request.getParameter("new_nachname") == null || request.getParameter("new_nachname").equals("")) {
+            nachnameToSet = owner.getNachname();
+        }
+        else {
+            nachnameToSet = request.getParameter("new_vorname");
+        }
 
         values.put("new_vorname", new String[]{
             owner.getVorname()
@@ -205,11 +203,7 @@ public class UserEditServlet extends HttpServlet{
        values.put("new_nachname", new String[]{
             owner.getNachname()
         });
-
-        
-        
        
-
         FormValues formValues = new FormValues();
         formValues.setValues(values);
         return formValues;

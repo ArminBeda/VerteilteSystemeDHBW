@@ -15,6 +15,7 @@ import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User;
 import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User.Password;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,14 +41,22 @@ public class SignUpServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login/signup.jsp");
         dispatcher.forward(request, response);
+     
         
         // Alte Formulardaten aus der Session entfernen
         HttpSession session = request.getSession();
+        
         session.removeAttribute("signup_form");
+        
+        
+       
+        
+
     }
     
     @Override
@@ -65,6 +74,7 @@ public class SignUpServlet extends HttpServlet {
         // Eingaben prüfen
         User user = new User(username, vorname, nachname, password1);
         Password p = user.getPassword();
+        ValidationBean vali = this.validationBean;
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
         
