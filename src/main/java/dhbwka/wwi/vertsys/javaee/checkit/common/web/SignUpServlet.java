@@ -52,11 +52,6 @@ public class SignUpServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         session.removeAttribute("signup_form");
-        
-        
-       
-        
-
     }
     
     @Override

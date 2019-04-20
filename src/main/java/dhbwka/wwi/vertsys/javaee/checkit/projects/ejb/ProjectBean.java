@@ -91,4 +91,17 @@ public class ProjectBean extends EntityBean<Project, Long> {
         
         return em.createQuery(query).getResultList();
     }
+
+    public List<Project> findByQuery(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            query = "";
+        }
+        
+        query = "%" + query + "%";
+
+        return em.createQuery("SELECT s FROM Project s"
+                            + "    WHERE s.shortText        LIKE :query")
+                .setParameter("query", query)
+                .getResultList();
+    }
 }
