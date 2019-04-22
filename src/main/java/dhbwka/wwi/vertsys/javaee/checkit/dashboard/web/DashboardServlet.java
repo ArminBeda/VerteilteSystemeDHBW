@@ -40,12 +40,14 @@ public class DashboardServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        abteilungBean.createTheFirstFourAbteilungen();
+
         
 
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
         List<DashboardSection> sections = new ArrayList<>();
         request.setAttribute("sections", sections);
+        
+      abteilungBean.createTheFirstFourAbteilungen();
         
         projectContent.createDashboardContent(sections);
 

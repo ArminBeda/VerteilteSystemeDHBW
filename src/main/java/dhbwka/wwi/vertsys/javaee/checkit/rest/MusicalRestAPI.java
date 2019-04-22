@@ -18,7 +18,7 @@ public class MusicalRestAPI extends Application {
         Set<Class<?>> resources = new java.util.HashSet<>();
         
         // Hier für jede Webservice-Klasse eine Zeile hinzufügen
-       // resources.add(CreateDemoData.class);
+        resources.add(CreateDemoData.class);
         resources.add(ProjectResource.class);
 
         return resources;

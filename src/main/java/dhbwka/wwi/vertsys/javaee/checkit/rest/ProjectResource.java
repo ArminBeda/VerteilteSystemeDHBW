@@ -4,6 +4,8 @@ package dhbwka.wwi.vertsys.javaee.checkit.rest;
 
 import dhbwka.wwi.vertsys.javaee.checkit.projects.ejb.ProjectBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
+import dhbwka.wwi.vertsys.javaee.checkit.rest.tdos.ProjectDTO;
+import dhbwka.wwi.vertsys.javaee.checkit.rest.tdos.ProjectFacade;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.validation.Valid;
@@ -29,6 +31,9 @@ public class ProjectResource {
 
     @EJB
     ProjectBean projectBean;
+    
+    @EJB
+    ProjectFacade projectFacade;
 
     /**
      * GET /api/Projects/
@@ -43,8 +48,8 @@ public class ProjectResource {
      * @return Eine Liste mit allen gefundenen Stücken
      */
     @GET
-    public List<Project> findProjects(@QueryParam("query") @DefaultValue("") String query) {        
-        return this.projectBean.findAll();
+    public List<ProjectDTO> findProjects(@QueryParam("query") @DefaultValue("") String query) {        
+        return this.projectFacade.findByQuery(query);
     }
 
     /**
@@ -71,8 +76,9 @@ public class ProjectResource {
      */
     @Path("{id}")
     @GET
-    public Project getProject(@PathParam("id") long id) {
-        return this.projectBean.findById(id);
+    public ProjectDTO getProject(@PathParam("id") long id) {
+        
+        return new ProjectDTO( this.projectBean.findById(id));
     }
 
     /**

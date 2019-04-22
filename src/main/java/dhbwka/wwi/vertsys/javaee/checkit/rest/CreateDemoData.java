@@ -44,33 +44,33 @@ public class CreateDemoData {
 
     @GET
     public StatusResponse createDemoData() {
-        for (Project project : this.musicPieceBean.findAll()) {
-    //        this.musicPieceBean.delete(project);
+        for (Project project : this.musicPieceBean.findByQuery("DemoTestProject")) {
+            this.musicPieceBean.delete(project);
         }
         
         
 
         Project project = new Project(userBean.getCurrentUser(), 
         abteilungBean.findByName("Financial Services").get(0), 
-        "ProjectA", 
+        "DemoTestProjectA", 
         "Moin Leut", 
         new Date(System.currentTimeMillis()),
         new Time(System.currentTimeMillis()),
         new Date(System.currentTimeMillis() + 86400000 ),
         new Time(System.currentTimeMillis()),
         false);
-     //   this.musicPieceBean.saveNew(project);
+        this.musicPieceBean.saveNew(project);
         
         project = new Project(userBean.getCurrentUser(), 
         abteilungBean.findByName("Financial Services").get(0), 
-        "ProjectA", 
+        "DemoTestProjectB", 
         "Moin Leut", 
         new Date(System.currentTimeMillis()),
         new Time(System.currentTimeMillis()),
         new Date(System.currentTimeMillis() + 86400000 ),
         new Time(System.currentTimeMillis()),
         false);
-   //     this.musicPieceBean.saveNew(project);
+       this.musicPieceBean.saveNew(project);
 
         // Statusmeldung zurückgeben
         StatusResponse response;
