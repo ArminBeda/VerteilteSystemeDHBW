@@ -37,6 +37,16 @@ public class UserBean {
     public User getCurrentUser() {
         return this.em.find(User.class, this.ctx.getCallerPrincipal().getName());
     }
+    
+        /**
+     * Datenbankobjekt eines beliebigen Benutzers auslesen.
+     * 
+     * @param username Gesuchter Benutzername
+     * @return Benutzer-Entity oder null
+     */
+    public User findByUsername(String username) {
+        return this.em.find(User.class, username);
+    }
 
     /**
      *

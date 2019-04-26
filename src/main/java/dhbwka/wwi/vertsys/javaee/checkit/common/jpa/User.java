@@ -92,7 +92,7 @@ public class User implements Serializable {
     @NotNull(message = "Das Passwort darf nicht leer sein.")
     private String passwordHash;
    
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "CHECKIT_USER_GROUP",
             joinColumns = @JoinColumn(name = "USERNAME")
