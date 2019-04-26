@@ -11,7 +11,7 @@ import javax.ws.rs.core.Application;
  * werden, wenn weitere Collections oder Resourcen hinzukommen.
  */
 @ApplicationPath("api")
-public class MusicalRestAPI extends Application {
+public class ProjectManagerRestAPI extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
