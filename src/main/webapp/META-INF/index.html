@@ -36,13 +36,13 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                 <div class="side-by-side">
                     <input type="text" id="username_login" required>
                 </div>
-                <label class="label" for="form_login_password">Password: <span class="required">*</span></label>
+                <label class="label" for="form_login_password">Passwort: <span class="required">*</span></label>
                 <div class="side-by-side">
                     <input type="password" id="password_login" required>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtn" onclick="setAuthDatas()">
-                        Set Authorization Data
+                         Einloggen
                     </button>
                 </div>
             </div>
@@ -54,12 +54,12 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtn" onclick="reloadUser()">
-                        Search User
+                        Sucher User
                     </button>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtnList" onclick="reloadUserList()">
-                        Search User List
+                        Sucher User Liste
                     </button>
                 </div>
                 <div id="container">
@@ -72,18 +72,18 @@ Creative Commons Namensnennung 4.0 International Lizenz.
             </div>
 
             <div class="column">
-                <label class="label" for="form_trip">City: <span class="required">*</span></label>
+                <label class="label" for="form_trip">Abteilung: <span class="required">*</span></label>
                 <div class="side-by-side">
                     <input type="text" id="city" required>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtn" onclick="reloadTrip()">
-                        Search Trip
+                        Suche Abteilung
                     </button>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtnList" onclick="reloadTripList()">
-                        Search Trip List
+                        Suche Abteilung Liste
                     </button>
                 </div>
                 <div id="container">
@@ -96,18 +96,18 @@ Creative Commons Namensnennung 4.0 International Lizenz.
             </div>
 
             <div class="column">
-                <label class="label" for="form_country">Project: <span class="required">*</span></label>
+                <label class="label" for="form_country">Projekt: <span class="required">*</span></label>
                 <div class="">
                     <input type="text" id="countryText" required>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtn" onclick="reloadProject()">
-                        Search Project
+                        Suche Projekt
                     </button>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtnList" onclick="reloadProjectList()">
-                        Search Project List
+                        Suche Projekt Liste
                     </button>
                 </div>
                 <div id="container">
@@ -150,7 +150,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     let userElement = document.createElement("div");
                     userElement.classList.add("user");
                     usersElement.appendChild(userElement);
-                    userElement.innerHTML = `<b>Username: </b>${response.username} <br/>` + `<b>Firstname: </b>${response.firstname} <br/>` + `<b>Lastname: </b>${response.lastname} <br/>`;
+                    userElement.innerHTML = `<b>Username: </b>${response.username} <br/>` + `<b>Vorname: </b>${response.firstname} <br/>` + `<b>Nachname: </b>${response.lastname} <br/>`;
 
                 }
             };
@@ -170,7 +170,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                         let userListElement = document.createElement("div");
                         userListElement.classList.add("user");
                         usersListElement.appendChild(userListElement);
-                        userListElement.innerHTML = `<b>Username: </b>${userList.username} <br/>` + `<b>Firstname: </b>${userList.firstname} <br/>` + `<b>Lastname: </b>${userList.lastname} <br/>`;
+                        userListElement.innerHTML = `<b>Username: </b>${userList.username} <br/>` + `<b>Vorname: </b>${userList.firstname} <br/>` + `<b>Nachname: </b>${userList.lastname} <br/>`;
                     });
                 }
             };
@@ -184,7 +184,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     return;
                 }
                 if (document.getElementById("city").value.length == 0) {
-                    alert(`Error: City can not be empty!`);
+                    alert(`Error: Abteilung can not be empty!`);
                     return;
                 } else {
                     let response = await tripResource.findTrip(document.getElementById("city").value);
@@ -196,7 +196,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                         let tripElement = document.createElement("div");
                         tripElement.classList.add("user");
                         tripsElement.appendChild(tripElement);
-                        tripElement.innerHTML = `<b>Destination: </b>${trip.destination} <br/>` + `<b>Country: </b>${trip.country.name} <br/>` + `<b>Description: </b>${trip.description} <br/>` + `<b>Owner: </b>${trip.owner.username} <br/>` + `<b>Status: </b>${trip.status.status} <br/>` + `<b>From: </b>${trip.from} <br/>` + `<b>To: </b>${trip.to} <br/>` + `<b>Type of Travel </b>${trip.typeOfTravel} <br/>`;
+                        tripElement.innerHTML = `<b>Abteilung </b>${trip.destination} <br/>`;
                     });
                 }
             };
@@ -216,7 +216,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                         let tripListElement = document.createElement("div");
                         tripListElement.classList.add("user");
                         tripsListElement.appendChild(tripListElement);
-                        tripListElement.innerHTML = `<b>Destination: </b>${tripList.destination} <br/>` + `<b>Country: </b>${tripList.country.name} <br/>` + `<b>Description: </b>${tripList.description} <br/>` + `<b>Owner: </b>${tripList.owner.username} <br/>` + `<b>Status: </b>${tripList.status.status} <br/>` + `<b>From: </b>${tripList.from} <br/>` + `<b>To: </b>${tripList.to} <br/>` + `<b>Type of Travel </b>${tripList.typeOfTravel} <br/>`;
+                        tripListElement.innerHTML = `<b>Abteilung: </b>${tripList.destination} <br/>`;
                     });
                 }
             };
@@ -229,7 +229,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     return;
                 }
                 if (document.getElementById("countryText").value.length == 0) {
-                    alert(`Error: Country can not be empty!`);
+                    alert(`Error: Project can not be empty!`);
                     return;
                 } else {
                     let response = await projectResource.findCountry(document.getElementById("countryText").value);
