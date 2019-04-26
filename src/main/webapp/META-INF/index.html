@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--
+Copyright © 2018 Dennis Schulmeister-Zimolong
+
+E-Mail: dhbw@windows3.de
+Webseite: https://www.wpvs.de/
+
+Dieser Quellcode ist lizenziert unter einer
+Creative Commons Namensnennung 4.0 International Lizenz.
+
+* @author yusefoenkol
+-->
+<html>
+    <head>
+        <title>RESTClient CheckIT</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="form.css">
+        <link rel="stylesheet" href="style.css">
+
+        <script src="UserResource.js"></script>
+        <script src="TripResource.js"></script>
+        <script src="ProjectResource.js"></script>
+    </head>
+    <body>
+        <h1>REST-Client CheckIT</h1>
+
+        <!-- Felder, um einen neuen Song anzulegen -->
+
+        <div class="row" id="row">
+
+            <div class="column" id="loginColumn">
+                <h2>LogIn</h2>
+                <label class="label" for="form_login_username">Username: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="text" id="username_login" required>
+                </div>
+                <label class="label" for="form_login_password">Password: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="password" id="password_login" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="setAuthDatas()">
+                        Set Authorization Data
+                    </button>
+                </div>
+            </div>
+
+            <div class="column">
+                <label class="label" for="form_username">Username: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="text" id="username" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="reloadUser()">
+                        Search User
+                    </button>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtnList" onclick="reloadUserList()">
+                        Search User List
+                    </button>
+                </div>
+                <div id="container">
+                    <div id="user"></div>
+                </div>
+                <hr id="trennlinie">
+                <div id="container">
+                    <div id="userList"></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <label class="label" for="form_trip">City: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="text" id="city" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="reloadTrip()">
+                        Search Trip
+                    </button>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtnList" onclick="reloadTripList()">
+                        Search Trip List
+                    </button>
+                </div>
+                <div id="container">
+                    <div id="trip"></div>
+                </div>
+                <hr id="trennlinie">
+                <div id="container">
+                    <div id="tripList"></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <label class="label" for="form_country">Project: <span class="required">*</span></label>
+                <div class="">
+                    <input type="text" id="countryText" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="reloadProject()">
+                        Search Project
+                    </button>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtnList" onclick="reloadProjectList()">
+                        Search Project List
+                    </button>
+                </div>
+                <div id="container">
+                    <div id="country"></div> 
+                </div>
+                <hr id="trennlinie">
+                <div id="container">
+                    <div id="countryList"></div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer">
+                <div id="wrapper">
+                    <p id="copyright">© 2019 checkIT</p>
+                </div>
+            </div>
+        </footer>
+        <!-- Ab hier fängt es an, Spaß zu machen 🤩 -->
+
+        <script>
+
+            userResource = new UserResource();
+            projectResource = new ProjectResource();
+            tripResource = new TripResource();
+
+            let reloadUser = async () => {
+                if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
+                    alert(`Error: Please set your Authorization Data correctly!`);
+                    return;
+                }
+                if (document.getElementById("username").value.length == 0) {
+                    alert(`Error: Username can not be empty!`);
+                    return;
+                } else {
+                    let response = await userResource.findUser(document.getElementById("username").value);
+
+                    let usersElement = document.getElementById("user");
+                    usersElement.innerHTML = "";
+                    let userElement = document.createElement("div");
+                    userElement.classList.add("user");
+                    usersElement.appendChild(userElement);
+                    userElement.innerHTML = `<b>Username: </b>${response.username} <br/>` + `<b>Firstname: </b>${response.firstname} <br/>` + `<b>Lastname: </b>${response.lastname} <br/>`;
+
+                }
+            };
+
+            let reloadUserList = async () => {
+
+                if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
+                    alert(`Error: Please set your Authorization Data correctly!`);
+                    return;
+                } else {
+                    let response = await userResource.getUserList( );
+                    let usersListElement = document.getElementById("userList");
+
+                    usersListElement.innerHTML = "";
+                    response.forEach(userList => {
+                        // Empfangene Daten anzeigen
+                        let userListElement = document.createElement("div");
+                        userListElement.classList.add("user");
+                        usersListElement.appendChild(userListElement);
+                        userListElement.innerHTML = `<b>Username: </b>${userList.username} <br/>` + `<b>Firstname: </b>${userList.firstname} <br/>` + `<b>Lastname: </b>${userList.lastname} <br/>`;
+                    });
+                }
+            };
+
+
+
+            let reloadTrip = async () => {
+
+                if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
+                    alert(`Error: Please set your Authorization Data correctly!`);
+                    return;
+                }
+                if (document.getElementById("city").value.length == 0) {
+                    alert(`Error: City can not be empty!`);
+                    return;
+                } else {
+                    let response = await tripResource.findTrip(document.getElementById("city").value);
+                    let tripsElement = document.getElementById("trip");
+
+                    tripsElement.innerHTML = "";
+                    response.forEach(trip => {
+                        // Empfangene Daten anzeigen
+                        let tripElement = document.createElement("div");
+                        tripElement.classList.add("user");
+                        tripsElement.appendChild(tripElement);
+                        tripElement.innerHTML = `<b>Destination: </b>${trip.destination} <br/>` + `<b>Country: </b>${trip.country.name} <br/>` + `<b>Description: </b>${trip.description} <br/>` + `<b>Owner: </b>${trip.owner.username} <br/>` + `<b>Status: </b>${trip.status.status} <br/>` + `<b>From: </b>${trip.from} <br/>` + `<b>To: </b>${trip.to} <br/>` + `<b>Type of Travel </b>${trip.typeOfTravel} <br/>`;
+                    });
+                }
+            };
+
+            let reloadTripList = async () => {
+
+                if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
+                    alert(`Error: Please set your Authorization Data correctly!`);
+                    return;
+                } else {
+                    let response = await tripResource.getTripList( );
+                    let tripsListElement = document.getElementById("tripList");
+
+                    tripsListElement.innerHTML = "";
+                    response.forEach(tripList => {
+                        // Empfangene Daten anzeigen
+                        let tripListElement = document.createElement("div");
+                        tripListElement.classList.add("user");
+                        tripsListElement.appendChild(tripListElement);
+                        tripListElement.innerHTML = `<b>Destination: </b>${tripList.destination} <br/>` + `<b>Country: </b>${tripList.country.name} <br/>` + `<b>Description: </b>${tripList.description} <br/>` + `<b>Owner: </b>${tripList.owner.username} <br/>` + `<b>Status: </b>${tripList.status.status} <br/>` + `<b>From: </b>${tripList.from} <br/>` + `<b>To: </b>${tripList.to} <br/>` + `<b>Type of Travel </b>${tripList.typeOfTravel} <br/>`;
+                    });
+                }
+            };
+
+
+
+            let reloadProject = async () => {
+                if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
+                    alert(`Error: Please set your Authorization Data correctly!`);
+                    return;
+                }
+                if (document.getElementById("countryText").value.length == 0) {
+                    alert(`Error: Country can not be empty!`);
+                    return;
+                } else {
+                    let response = await projectResource.findCountry(document.getElementById("countryText").value);
+                    let countriesElement = document.getElementById("country");
+
+                    countriesElement.innerHTML = "";
+                    
+                    response.forEach(country => {
+                        // Empfangene Daten anzeigen
+                        let countryElement = document.createElement("div");
+                        countryElement.classList.add("user");
+                        countriesElement.appendChild(countryElement);
+                        countryElement.innerHTML = `<b>Project: </b>${country.shortText} <br/>`;
+                    });
+                }
+            };
+
+            let reloadProjectList = async () => {
+                if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
+                    alert(`Error: Please set your Authorization Data correctly!`);
+                    return;
+                } else {
+                    let response = await projectResource.getProjectList();
+                    let countriesListElement = document.getElementById("countryList");
+
+                    countriesListElement.innerHTML = "";
+                    response.forEach(countryList => {
+                        // Empfangene Daten anzeigen
+                        let countryListElement = document.createElement("div");
+                        countryListElement.classList.add("user");
+                        countriesListElement.appendChild(countryListElement);
+                        countryListElement.innerHTML = `<b>Project: </b>${countryList.shortText} <br/>`;
+                    });
+                }
+            };
+
+            function setAuthDatas() {
+                userResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
+                tripResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
+                projectResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
+            }
+
+        </script>
+
+    </body>
+</html>

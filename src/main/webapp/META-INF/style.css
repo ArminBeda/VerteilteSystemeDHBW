@@ -1,0 +1,121 @@
+/*
+Copyright © 2018 Dennis Schulmeister-Zimolong
+
+E-Mail: dhbw@windows3.de
+Webseite: https://www.wpvs.de/
+
+Dieser Quellcode ist lizenziert unter einer
+Creative Commons Namensnennung 4.0 International Lizenz.
+*/
+
+html {
+    font-family: sans-serif;
+    font-size: 12pt;
+
+    background-image: url(https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+h1, h2 {
+    color: rgba(83, 149, 176, 0.9) !important;
+}
+
+.column{
+    background-color: rgba(0, 0, 0, 0.50) !important;
+    padding: 1em;
+    border-radius: 45px 5%;
+    border-color: #000000;
+    border-width: 2.2px !important;
+    border-style: solid;
+    margin: 1em;
+    width: fit-content;
+}
+
+.user{
+    display: inline-block;
+    background: rgba(217, 217, 217,0.4)!important;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 1em;
+    border: 0.5px solid rgb(47, 43, 41)!important;
+}
+
+.label {
+    color: rgb(255,255,255)!important;
+    font-weight: bold !important;
+    margin-top:5px;
+    display:inline-block;
+}
+
+#searchbtn {
+    margin-top: 1em !important;
+    background-color: rgba(189, 142, 98, 0.6);
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#searchbtnList {
+    margin-top: 1em !important;
+    background-color: rgba(155, 75, 18, 0.4) !important;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#user {
+    background: rgba(0, 0, 0, 0.50);
+    margin: 1em;
+    display: contents;
+}
+
+#trip {
+    background: rgba(0, 0, 0, 0.50);
+    margin: 1em;
+    display: contents;
+} 
+
+#country {
+    background: rgba(0, 0, 0, 0.50);
+    margin: 1em;
+    display: contents;
+}
+
+#loginColumn {
+    display: inline-block;
+}
+
+#row {
+    display: -webkit-flex !important;
+    display: -ms-flexbox;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+#copyright {
+    position : absolute;
+    bottom : 0;
+    height : auto;
+    margin-top : auto;
+    color: whitesmoke;
+    font-size: small;
+}
+
+#wrapper{
+    text-align: right;
+    margin: 0px auto 0px auto;
+}

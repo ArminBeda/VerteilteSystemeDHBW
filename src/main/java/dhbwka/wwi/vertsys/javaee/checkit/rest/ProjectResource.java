@@ -47,13 +47,14 @@ public class ProjectResource {
      * @param query Suchbegriff
      * @return Eine Liste mit allen gefundenen Stücken
      */
-    /**
+    
     @GET
     public List<ProjectDTO> findProjects(@QueryParam("query") @DefaultValue("") String query) {        
         return this.projectFacade.findByQuery(query);
     }
-    **/
-     @GET
+    
+    
+    @GET
     public List<ProjectDTO> findProjects() {        
         return this.projectFacade.findAll();
     }
