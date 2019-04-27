@@ -39,7 +39,7 @@
             <%-- Titelzeile --%>
             <div id="titlebar">
                 <div class="appname">
-                    ProjectBean
+                    checkIT
                 </div>
                 <div class="content">
                     ${title}
