@@ -21,6 +21,7 @@ public class ProjectManagerRestAPI extends Application {
         resources.add(CreateDemoData.class);
         resources.add(ProjectResource.class);
         resources.add(AbteilungResource.class);
+        resources.add(UserResource.class);
 
         return resources;
     }

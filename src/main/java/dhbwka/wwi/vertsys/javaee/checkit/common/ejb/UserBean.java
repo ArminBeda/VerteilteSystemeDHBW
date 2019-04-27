@@ -48,7 +48,7 @@ public class UserBean {
      * @param username Gesuchter Benutzername
      * @return Benutzer-Entity oder null
      */
-public User findByUsername(String userName) {
+        public User findByUsername(String userName) {
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
         CriteriaQuery<User> query = cb.createQuery(User.class);
         Root<User> from = query.from(User.class);
@@ -141,6 +141,25 @@ public User findByUsername(String userName) {
         
         
     }
+    
+     /**
+     * Gibt alle Datenbankobjekt User zurück,
+     *
+     * @return Liste der registrierten User
+     */
+    public List<User> findAll() {
+        return this.em.createQuery("SELECT u FROM User u").getResultList();
+    }
+    
+      /**
+     * Findet einen User nach seiner ID,
+     *
+     * @return User der gesuchten ID
+     */
+    public User findUser(String id) {
+        return em.find(User.class, id);
+    }
+
 
     /**
      * Fehler: Der Benutzername ist bereits vergeben

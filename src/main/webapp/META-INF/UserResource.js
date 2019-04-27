@@ -13,7 +13,7 @@ class UserResource {
      * @param {String} url Basis-URL des REST-Webservices (optional)
      */
     constructor(url) {
-        this.url = url || "https://localhost:8443/myTravelator/api/user/";
+        this.url = url || "https://localhost:8443/checkIT/api/Users/";
         this.username = "";
         this.password = "";
     }
