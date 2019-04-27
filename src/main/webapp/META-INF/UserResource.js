@@ -27,6 +27,36 @@ class UserResource {
         this.username = username;
         this.password = password;
     }
+    
+    async authorize() {
+
+        let url = this.url;
+        url = url + this.username;
+        
+        let response = await fetch(url, {
+            headers: {
+                "accept": "application/json",
+                "authorization": "Basic " + btoa(this.username + ":" + this.password)
+            }
+        });
+        var ex = response.status;
+        
+        if (ex == 500) {
+            alert(`HTTP Status 500 – Internal Server Error. Exception Report: Login failed.`);
+            location.reload(true);
+            return;
+        }
+        
+        if (ex == 403) {
+            alert(`Falsche Einloggendaten`);
+            location.reload(true);
+            return;
+        }
+        
+        return await response.json();
+    }
+    
+    
 
     async findUser(username_query) {
 
