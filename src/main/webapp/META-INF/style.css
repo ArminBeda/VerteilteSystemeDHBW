@@ -119,3 +119,10 @@ h1, h2 {
     text-align: right;
     margin: 0px auto 0px auto;
 }
+
+#loginsucces {
+     font-size: 16px !important;
+     font-weight: bold !important;
+     color: rgba(83, 149, 90, 0.9) !important;
+     display: none;
+}

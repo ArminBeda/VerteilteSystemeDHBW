@@ -29,6 +29,9 @@ class UserResource {
     }
     
     async authorize() {
+        
+            let login = document.getElementById("loginsucces");
+            login.style.display = 'none';
 
         let url = this.url;
         url = url + this.username;
@@ -42,22 +45,33 @@ class UserResource {
         var ex = response.status;
         
         if (ex == 500) {
-            alert(`HTTP Status 500 – Internal Server Error. Exception Report: Login failed.`);
-            location.reload(true);
-            return;
+            let loginSucces = document.getElementById("loginsucces");
+            loginSucces.style.display = 'none';
+            alert(`Logindaten nicht korrekt eingegeben oder unvollständig.`);
+            return await false;
         }
         
         if (ex == 403) {
+            let loginSucces = document.getElementById("loginsucces"); 
+            loginSucces.style.display = 'none';
             alert(`Logindaten nicht korrekt eingegeben oder unvollständig`);
-            location.reload(true);
-            return;
+            return await false;
         }
         
-        if (ex != 400 || ex != 401 || ex != 403 || ex != 404 || ex != 405 || ex != 409 || ex != 410 || ex != 411 || ex != 412 || ex != 413 || ex != 416 || ex != 429 || ex != 500 || ex != 502 || ex != 503) {
-            
+        if (ex != 400 && ex != 401 && ex != 403 && ex != 404 && ex != 405 && ex != 409 && ex != 410 && ex != 411 && ex != 412 && ex != 413 && ex != 416 && ex != 429 && ex != 500 && ex != 502 && ex != 503) {
+           let loginSucces = document.getElementById("loginsucces"); 
+          loginSucces.style.display = 'block';
+            return await true;
+             
+        }
+        else {
+            let loginSucces = document.getElementById("loginsucces");
+            loginSucces.style.display = 'none';
+            alert(`Logindaten nicht korrekt eingegeben oder unvollständig`);
+            return await false;
         }
        
-        return await response.json();
+        //return await response.json();
     }
     
     

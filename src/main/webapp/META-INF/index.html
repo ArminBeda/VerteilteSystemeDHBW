@@ -45,6 +45,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                          Einloggen
                     </button>
                 </div>
+                <p id="loginsucces">Benutzer erfolgreich autorisiert</p>
             </div>
 
             <div class="column">
@@ -270,7 +271,14 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                 userResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
                 abteilungResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
                 projectResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
-                userResource.authorize();
+                
+                
+                let loginSucces = document.getElementById("loginsucces");
+                let auth = userResource.authorize();
+                
+              
+               
+                
     }
 
         </script>
