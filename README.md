@@ -1,4 +1,4 @@
-Beispielanwendung "checkit"
+Anwendung checkIT
 =========================
 
 Kurzbeschreibung
@@ -108,6 +108,8 @@ Screenshots
         </td>
     </tr>
 </table>
+
+Diese sind in der Testdokumentation zu finden. 
 
 Copyright
 ---------
