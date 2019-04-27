@@ -20,7 +20,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
         <link rel="stylesheet" href="style.css">
 
         <script src="UserResource.js"></script>
-        <script src="TripResource.js"></script>
+        <script src="AbteilungResource.js"></script>
         <script src="ProjectResource.js"></script>
     </head>
     <body>
@@ -132,7 +132,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
             userResource = new UserResource();
             projectResource = new ProjectResource();
-            tripResource = new TripResource();
+            abteilungResource = new AbteilungResource();
 
             let reloadUser = async () => {
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
@@ -187,7 +187,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     alert(`Error: Abteilung can not be empty!`);
                     return;
                 } else {
-                    let response = await tripResource.findTrip(document.getElementById("city").value);
+                    let response = await abteilungResource.findTrip(document.getElementById("city").value);
                     let tripsElement = document.getElementById("trip");
 
                     tripsElement.innerHTML = "";
@@ -196,7 +196,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                         let tripElement = document.createElement("div");
                         tripElement.classList.add("user");
                         tripsElement.appendChild(tripElement);
-                        tripElement.innerHTML = `<b>Abteilung </b>${trip.destination} <br/>`;
+                        tripElement.innerHTML = `<b>Abteilung </b>${trip.name} <br/>`;
                     });
                 }
             };
@@ -207,7 +207,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     alert(`Error: Please set your Authorization Data correctly!`);
                     return;
                 } else {
-                    let response = await tripResource.getTripList( );
+                    let response = await abteilungResource.getTripList( );
                     let tripsListElement = document.getElementById("tripList");
 
                     tripsListElement.innerHTML = "";
@@ -216,7 +216,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                         let tripListElement = document.createElement("div");
                         tripListElement.classList.add("user");
                         tripsListElement.appendChild(tripListElement);
-                        tripListElement.innerHTML = `<b>Abteilung: </b>${tripList.destination} <br/>`;
+                        tripListElement.innerHTML = `<b>Abteilung: </b>${tripList.name} <br/>`;
                     });
                 }
             };
@@ -268,7 +268,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
             function setAuthDatas() {
                 userResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
-                tripResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
+                abteilungResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
                 projectResource.setAuthData(document.getElementById('username_login').value, document.getElementById('password_login').value);
             }
 

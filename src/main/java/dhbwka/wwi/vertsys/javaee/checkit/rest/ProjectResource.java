@@ -54,10 +54,10 @@ public class ProjectResource {
     }
     
     
-    @GET
+  /*  @GET
     public List<ProjectDTO> findProjects() {        
         return this.projectFacade.findAll();
-    }
+    }*/
 
     /**
      * POST /api/Projects/

@@ -12,6 +12,7 @@ package dhbwka.wwi.vertsys.javaee.checkit.projects.ejb;
 
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.EntityBean;
 import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Abteilung;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -47,6 +48,18 @@ public class AbteilungBean extends EntityBean<Abteilung, Long> {
         return em.createQuery("SELECT a FROM Abteilung a WHERE a.name = :name")
                  .setParameter("name", name)
                  .getResultList();
+    }
+     
+      public List<Abteilung> findByQuery(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            query = "";
+        }
+        
+        query = "%" + query + "%";
+
+        return em.createQuery("Select a from Abteilung a where a.name LIKE :query")
+                .setParameter("query", query)
+                .getResultList();
     }
      
      public boolean existName(String name) {

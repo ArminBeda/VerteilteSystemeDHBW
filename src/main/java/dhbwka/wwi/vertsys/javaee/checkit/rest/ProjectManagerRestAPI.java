@@ -20,6 +20,7 @@ public class ProjectManagerRestAPI extends Application {
         // Hier für jede Webservice-Klasse eine Zeile hinzufügen
         resources.add(CreateDemoData.class);
         resources.add(ProjectResource.class);
+        resources.add(AbteilungResource.class);
 
         return resources;
     }

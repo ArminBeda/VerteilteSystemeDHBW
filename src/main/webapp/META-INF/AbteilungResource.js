@@ -1,18 +1,19 @@
 "use strict";
+
 /**
- * Von der Klasse CountryResource des Servers abgeleitete Klasse, die im Prinzip
+ * Von der Klasse TripResource des Servers abgeleitete Klasse, die im Prinzip
  * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
  * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
- * @author yusefoenkol
+ * @author 
  */
-class ProjectResource {
+class AbteilungResource {
 
     /**
      * Konstruktor.
      * @param {String} url Basis-URL des REST-Webservices (optional)
      */
     constructor(url) {
-        this.url = url || "https://localhost:8443/checkIT/api/Projects/";
+        this.url = url || "https://localhost:8443/checkIT/api/Abteilungen/";
         this.username = "";
         this.password = "";
     }
@@ -27,10 +28,11 @@ class ProjectResource {
         this.password = password;
     }
 
-    async findCountry(country_query) {
+    async findTrip(trip_query) {
 
         let url = this.url;
-        url = url + "?query=" + country_query;
+        url = url + "?query=" + trip_query;
+
         let response = await fetch(url, {
             headers: {
                 "accept": "application/json",
@@ -44,12 +46,12 @@ class ProjectResource {
             location.reload(true);
             return;
         } 
+
         return await response.json();
-
     }
-
-    async getProjectList() {
-        let response = await fetch(this.url, {
+    
+    async getTripList() {
+        let response = await fetch(this.url,{
             headers: {
                 "accept": "application/json",
                 "authorization": "Basic " + btoa(this.username + ":" + this.password)
@@ -62,6 +64,7 @@ class ProjectResource {
             location.reload(true);
             return;
         } 
+
         return await response.json();
     }
 }

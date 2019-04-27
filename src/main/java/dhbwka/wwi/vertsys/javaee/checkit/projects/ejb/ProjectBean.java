@@ -99,8 +99,7 @@ public class ProjectBean extends EntityBean<Project, Long> {
         
         query = "%" + query + "%";
 
-        return em.createQuery("SELECT s FROM Project s"
-                            + "    WHERE s.shortText        LIKE :query")
+        return em.createQuery("Select p from Project p where p.shortText LIKE :query")
                 .setParameter("query", query)
                 .getResultList();
     }
