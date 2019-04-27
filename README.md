@@ -11,6 +11,10 @@ ausgelegten Applikationsserver. Sämtliche Anwendungslogik wird dabei vom Server
 implementiert, so dass für jedes URL-Pattern der Anwendung ein komplett serverseitig
 generierte HTML-Seite abgerufen und im Browser dargestellt wird.
 
+Die Webanwendung „checkIT“ ermöglicht dem Benutzer eigene Projekte anzulegen und diese zu verwalten. Durch einer Registrierung wird eine sichere Privatsphäre gewährleistet. Somit kann der Benutzer durch seine Login-Daten jederzeit seinen persönlichen Bereich mit den eigenen Projekten erreichen.
+
+Der Benutzer kann das zu erstellende Projekt einer Abteilung zuweisen. Zudem hat er die Möglichkeit, einen Status und eine Priorität für das Projekt festzulegen. Außerdem wird dem Benutzer durch checkIT die Funktionalität angeboten, neben den bereits vorhandenen Abteilungen, neue anzulegen bzw. bestimmte Abteilungen zu entfernen. Die Abteilungen werden anschließend im Dashboard als Kacheln angezeigt.
+
 Verwendete Technologien
 -----------------------
 

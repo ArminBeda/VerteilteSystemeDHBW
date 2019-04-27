@@ -48,11 +48,15 @@ class UserResource {
         }
         
         if (ex == 403) {
-            alert(`Falsche Einloggendaten`);
+            alert(`Logindaten nicht korrekt eingegeben oder unvollständig`);
             location.reload(true);
             return;
         }
         
+        if (ex != 400 || ex != 401 || ex != 403 || ex != 404 || ex != 405 || ex != 409 || ex != 410 || ex != 411 || ex != 412 || ex != 413 || ex != 416 || ex != 429 || ex != 500 || ex != 502 || ex != 503) {
+            
+        }
+       
         return await response.json();
     }
     
