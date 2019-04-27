@@ -83,13 +83,13 @@ h1, h2 {
     display: contents;
 }
 
-#trip {
+#dep {
     background: rgba(0, 0, 0, 0.50);
     margin: 1em;
     display: contents;
 } 
 
-#country {
+#project {
     background: rgba(0, 0, 0, 0.50);
     margin: 1em;
     display: contents;

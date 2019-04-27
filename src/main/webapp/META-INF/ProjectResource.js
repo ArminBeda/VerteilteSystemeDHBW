@@ -1,9 +1,10 @@
 "use strict";
 /**
- * Von der Klasse CountryResource des Servers abgeleitete Klasse, die im Prinzip
- * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
- * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
- * @author yusefoenkol
+Klasse, die von der Ressourcenklasse der Abteilung 
+des Servers abgeleitet ist, die grundsätzlich dieselben 
+Methoden verwendet. Hier rufen wir jedoch den REST-Webservice des Servers auf,
+ anstatt direkt auf eine Datenbank zuzugreifen.
+ * @author BEDAAR
  */
 class ProjectResource {
 
@@ -27,10 +28,10 @@ class ProjectResource {
         this.password = password;
     }
 
-    async findCountry(country_query) {
+    async findProject(project_query) {
 
         let url = this.url;
-        url = url + "?query=" + country_query;
+        url = url + "?query=" + project_query;
         let response = await fetch(url, {
             headers: {
                 "accept": "application/json",

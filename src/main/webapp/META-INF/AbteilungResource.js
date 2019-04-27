@@ -1,10 +1,11 @@
 "use strict";
 
 /**
- * Von der Klasse TripResource des Servers abgeleitete Klasse, die im Prinzip
- * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
- * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
- * @author 
+ * Von der Klasse DepResource des Servers abgeleitete Klasse, 
+ * die grundsätzlich die gleichen Methoden besitzt. Hier rufen wir 
+ * jedoch den REST-Webservice von Servern auf, 
+ * anstatt direkt auf eine Datenbank zuzugreifen.
+ * @author BEDAAR
  */
 class AbteilungResource {
 
@@ -28,10 +29,10 @@ class AbteilungResource {
         this.password = password;
     }
 
-    async findTrip(trip_query) {
+    async findDep(dep_query) {
 
         let url = this.url;
-        url = url + "?query=" + trip_query;
+        url = url + "?query=" + dep_query;
 
         let response = await fetch(url, {
             headers: {
@@ -50,7 +51,7 @@ class AbteilungResource {
         return await response.json();
     }
     
-    async getTripList() {
+    async getDepList() {
         let response = await fetch(this.url,{
             headers: {
                 "accept": "application/json",

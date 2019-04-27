@@ -4,7 +4,7 @@
  * Von der Klasse UserResource des Servers abgeleitete Klasse, die im Prinzip
  * dieselben Methoden besitzt. Hier rufen wir jedoch den REST-Webservice des
  * Servers auf, anstelle direkt auf eine Datenbank zuzugreifen.
- * @author yusefoenkol
+ * @author BEDAAR
  */
 class UserResource {
 

@@ -8,7 +8,7 @@ Webseite: https://www.wpvs.de/
 Dieser Quellcode ist lizenziert unter einer
 Creative Commons Namensnennung 4.0 International Lizenz.
 
-* @author yusefoenkol
+* @author BEDAAR
 -->
 <html>
     <head>
@@ -32,7 +32,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
             <div class="column" id="loginColumn">
                 <h2>LogIn</h2>
-                <label class="label" for="form_login_username">Username: <span class="required">*</span></label>
+                <label class="label" for="form_login_username">Benutzername: <span class="required">*</span></label>
                 <div class="side-by-side">
                     <input type="text" id="username_login" required>
                 </div>
@@ -48,18 +48,18 @@ Creative Commons Namensnennung 4.0 International Lizenz.
             </div>
 
             <div class="column">
-                <label class="label" for="form_username">Username: <span class="required">*</span></label>
+                <label class="label" for="form_username">Benutzername <span class="required">*</span></label>
                 <div class="side-by-side">
                     <input type="text" id="username" required>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtn" onclick="reloadUser()">
-                        Sucher User
+                        Suche Benutzer
                     </button>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtnList" onclick="reloadUserList()">
-                        Sucher User Liste
+                        Suche Benutzerliste
                     </button>
                 </div>
                 <div id="container">
@@ -72,33 +72,33 @@ Creative Commons Namensnennung 4.0 International Lizenz.
             </div>
 
             <div class="column">
-                <label class="label" for="form_trip">Abteilung: <span class="required">*</span></label>
+                <label class="label" for="form_dep">Abteilung: <span class="required">*</span></label>
                 <div class="side-by-side">
-                    <input type="text" id="city" required>
+                    <input type="text" id="departmentToSearch" required>
                 </div>
                 <div class="side-by-side">
-                    <button id="searchbtn" onclick="reloadTrip()">
+                    <button id="searchbtn" onclick="reloadDep()">
                         Suche Abteilung
                     </button>
                 </div>
                 <div class="side-by-side">
-                    <button id="searchbtnList" onclick="reloadTripList()">
-                        Suche Abteilung Liste
+                    <button id="searchbtnList" onclick="reloadDepList()">
+                        Suche Abteilungsliste
                     </button>
                 </div>
                 <div id="container">
-                    <div id="trip"></div>
+                    <div id="dep"></div>
                 </div>
                 <hr id="trennlinie">
                 <div id="container">
-                    <div id="tripList"></div>
+                    <div id="depList"></div>
                 </div>
             </div>
 
             <div class="column">
-                <label class="label" for="form_country">Projekt: <span class="required">*</span></label>
+                <label class="label" for="form_project">Projekt: <span class="required">*</span></label>
                 <div class="">
-                    <input type="text" id="countryText" required>
+                    <input type="text" id="projectText" required>
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtn" onclick="reloadProject()">
@@ -107,15 +107,15 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                 </div>
                 <div class="side-by-side">
                     <button id="searchbtnList" onclick="reloadProjectList()">
-                        Suche Projekt Liste
+                        Projektliste
                     </button>
                 </div>
                 <div id="container">
-                    <div id="country"></div> 
+                    <div id="project"></div> 
                 </div>
                 <hr id="trennlinie">
                 <div id="container">
-                    <div id="countryList"></div>
+                    <div id="projectList"></div>
                 </div>
             </div>
         </div>
@@ -136,11 +136,11 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
             let reloadUser = async () => {
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
-                    alert(`Error: Please set your Authorization Data correctly!`);
+                    alert(`Fehler: Bitte stellen Sie Ihre Berechtigungsdaten korrekt ein!`);
                     return;
                 }
                 if (document.getElementById("username").value.length == 0) {
-                    alert(`Error: Username can not be empty!`);
+                    alert(`Fehler: Benutzername darf nicht leer sein!`);
                     return;
                 } else {
                     let response = await userResource.findUser(document.getElementById("username").value);
@@ -150,7 +150,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     let userElement = document.createElement("div");
                     userElement.classList.add("user");
                     usersElement.appendChild(userElement);
-                    userElement.innerHTML = `<b>Username: </b>${response.username} <br/>` + `<b>Vorname: </b>${response.firstname} <br/>` + `<b>Nachname: </b>${response.lastname} <br/>`;
+                    userElement.innerHTML = `<b>Benutzername: </b>${response.username} <br/>` + `<b>Vorname: </b>${response.firstname} <br/>` + `<b>Nachname: </b>${response.lastname} <br/>`;
 
                 }
             };
@@ -158,7 +158,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
             let reloadUserList = async () => {
 
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
-                    alert(`Error: Please set your Authorization Data correctly!`);
+                    alert(`Fehler: Bitte stellen Sie Ihre Berechtigungsdaten korrekt ein!`);
                     return;
                 } else {
                     let response = await userResource.getUserList( );
@@ -170,53 +170,53 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                         let userListElement = document.createElement("div");
                         userListElement.classList.add("user");
                         usersListElement.appendChild(userListElement);
-                        userListElement.innerHTML = `<b>Username: </b>${userList.username} <br/>` + `<b>Vorname: </b>${userList.firstname} <br/>` + `<b>Nachname: </b>${userList.lastname} <br/>`;
+                        userListElement.innerHTML = `<b>Benutzername: </b>${userList.username} <br/>` + `<b>Vorname: </b>${userList.firstname} <br/>` + `<b>Nachname: </b>${userList.lastname} <br/>`;
                     });
                 }
             };
 
 
 
-            let reloadTrip = async () => {
+            let reloadDep = async () => {
 
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
-                    alert(`Error: Please set your Authorization Data correctly!`);
+                    alert(`Fehler: Bitte stellen Sie Ihre Berechtigungsdaten korrekt ein!`);
                     return;
                 }
-                if (document.getElementById("city").value.length == 0) {
-                    alert(`Error: Abteilung can not be empty!`);
+                if (document.getElementById("departmentToSearch").value.length == 0) {
+                    alert(`Fehler: Abteilung darf nicht leer sein!`);
                     return;
                 } else {
-                    let response = await abteilungResource.findTrip(document.getElementById("city").value);
-                    let tripsElement = document.getElementById("trip");
+                    let response = await abteilungResource.findDep(document.getElementById("departmentToSearch").value);
+                    let depsElement = document.getElementById("dep");
 
-                    tripsElement.innerHTML = "";
-                    response.forEach(trip => {
+                    depsElement.innerHTML = "";
+                    response.forEach(dep => {
                         // Empfangene Daten anzeigen
-                        let tripElement = document.createElement("div");
-                        tripElement.classList.add("user");
-                        tripsElement.appendChild(tripElement);
-                        tripElement.innerHTML = `<b>Abteilung </b>${trip.name} <br/>`;
+                        let depElement = document.createElement("div");
+                        depElement.classList.add("user");
+                        depsElement.appendChild(depElement);
+                        depElement.innerHTML = `<b>Abteilung </b>${dep.name} <br/>`;
                     });
                 }
             };
 
-            let reloadTripList = async () => {
+            let reloadDepList = async () => {
 
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
-                    alert(`Error: Please set your Authorization Data correctly!`);
+                    alert(`Fehler: Bitte stellen Sie Ihre Berechtigungsdaten korrekt ein!`);
                     return;
                 } else {
-                    let response = await abteilungResource.getTripList( );
-                    let tripsListElement = document.getElementById("tripList");
+                    let response = await abteilungResource.getDepList( );
+                    let depsListElement = document.getElementById("depList");
 
-                    tripsListElement.innerHTML = "";
-                    response.forEach(tripList => {
+                    depsListElement.innerHTML = "";
+                    response.forEach(depList => {
                         // Empfangene Daten anzeigen
-                        let tripListElement = document.createElement("div");
-                        tripListElement.classList.add("user");
-                        tripsListElement.appendChild(tripListElement);
-                        tripListElement.innerHTML = `<b>Abteilung: </b>${tripList.name} <br/>`;
+                        let depListElement = document.createElement("div");
+                        depListElement.classList.add("user");
+                        depsListElement.appendChild(depListElement);
+                        depListElement.innerHTML = `<b>Abteilung: </b>${depList.name} <br/>`;
                     });
                 }
             };
@@ -225,43 +225,43 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
             let reloadProject = async () => {
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
-                    alert(`Error: Please set your Authorization Data correctly!`);
+                    alert(`Fehler: Bitte stellen Sie Ihre Berechtigungsdaten korrekt ein!`);
                     return;
                 }
-                if (document.getElementById("countryText").value.length == 0) {
-                    alert(`Error: Project can not be empty!`);
+                if (document.getElementById("projectText").value.length == 0) {
+                    alert(`Fehler: Projekt darf nicht leer sein!`);
                     return;
                 } else {
-                    let response = await projectResource.findCountry(document.getElementById("countryText").value);
-                    let countriesElement = document.getElementById("country");
+                    let response = await projectResource.findProject(document.getElementById("projectText").value);
+                    let projectsElement = document.getElementById("project");
 
-                    countriesElement.innerHTML = "";
+                    projectsElement.innerHTML = "";
                     
-                    response.forEach(country => {
+                    response.forEach(project => {
                         // Empfangene Daten anzeigen
-                        let countryElement = document.createElement("div");
-                        countryElement.classList.add("user");
-                        countriesElement.appendChild(countryElement);
-                        countryElement.innerHTML = `<b>Project: </b>${country.shortText} <br/>`;
+                        let projectElement = document.createElement("div");
+                        projectElement.classList.add("user");
+                        projectsElement.appendChild(projectElement);
+                        projectElement.innerHTML = `<b>Projekt: </b>${project.shortText} <br/>`;
                     });
                 }
             };
 
             let reloadProjectList = async () => {
                 if ((document.getElementById("username_login").value.length == 0) && (document.getElementById("password_login").value.length == 0)) {
-                    alert(`Error: Please set your Authorization Data correctly!`);
+                    alert(`Fehler: Bitte stellen Sie Ihre Berechtigungsdaten korrekt ein!`);
                     return;
                 } else {
                     let response = await projectResource.getProjectList();
-                    let countriesListElement = document.getElementById("countryList");
+                    let projectsListElement = document.getElementById("projectList");
 
-                    countriesListElement.innerHTML = "";
-                    response.forEach(countryList => {
+                    projectsListElement.innerHTML = "";
+                    response.forEach(projectList => {
                         // Empfangene Daten anzeigen
-                        let countryListElement = document.createElement("div");
-                        countryListElement.classList.add("user");
-                        countriesListElement.appendChild(countryListElement);
-                        countryListElement.innerHTML = `<b>Project: </b>${countryList.shortText} <br/>`;
+                        let projectListElement = document.createElement("div");
+                        projectListElement.classList.add("user");
+                        projectsListElement.appendChild(projectListElement);
+                        projectListElement.innerHTML = `<b>Projekt: </b>${projectList.shortText} <br/>`;
                     });
                 }
             };
