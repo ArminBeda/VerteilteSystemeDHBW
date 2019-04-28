@@ -72,7 +72,7 @@ Screenshots
         </td>
         <td>
             <a href="projectlist.png">
-                <img src="projectList.png" style="display: block; width: 100%;" />
+                <img src="projectlist.png" style="display: block; width: 100%;" />
             </a>
         </td>
     </tr>
