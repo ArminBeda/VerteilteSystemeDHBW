@@ -43,7 +43,7 @@ Screenshots
 <table style="max-width: 100%;">
     <tr>
         <td>
-            <a href="login.png">
+            <a href="img/login.png">
                 <img src="login.png" style="display: block; width: 100%;" />
             </a>
         </td>
