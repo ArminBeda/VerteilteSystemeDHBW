@@ -10,6 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.checkit.common.ejb;
 
 import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -185,5 +186,16 @@ public class UserBean {
         
         }
     }
+    
+        public List<User> findByQuery(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            query = "";
+        }
+        
+        query = "%" + query + "%";
 
+        return em.createQuery("Select u from User u where u.username LIKE :query")
+                .setParameter("query", query)
+                .getResultList();
+    }
 }

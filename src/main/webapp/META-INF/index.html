@@ -120,13 +120,79 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="footer">
-                <div id="wrapper">
-                    <p id="copyright">© 2019 checkIT</p>
+        
+        <!--           <div class="row" id="row">
+
+            <div class="column" id="loginColumn">
+                <h2>LogIn</h2>
+                <label class="label" for="form_login_username">Benutzername: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="text" id="username_login" required>
+                </div>
+                <label class="label" for="form_login_password">Passwort: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="password" id="password_login" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="setAuthDatas()">
+                         Einloggen
+                    </button>
+                </div>
+                <p id="loginsucces">Benutzer erfolgreich autorisiert</p>
+            </div>
+
+            <div class="column">
+                <label class="label" for="form_username">Benutzername <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="text" id="username" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="reloadUser()">
+                        Suche Benutzer
+                    </button>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtnList" onclick="reloadUserList()">
+                        Benutzerliste
+                    </button>
+                </div>
+                <div id="container">
+                    <div id="user"></div>
+                </div>
+                <hr id="trennlinie">
+                <div id="container">
+                    <div id="userList"></div>
                 </div>
             </div>
-        </footer>
+
+        <div class="column">
+                <label class="label" for="form_dep">Abteilung: <span class="required">*</span></label>
+                <div class="side-by-side">
+                    <input type="text" id="departmentToSearch" required>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtn" onclick="reloadDep()">
+                        Suche Abteilung
+                    </button>
+                </div>
+                <div class="side-by-side">
+                    <button id="searchbtnList" onclick="reloadDepList()">
+                        Abteilungsliste
+                    </button>
+                </div>
+                <div id="container">
+                    <div id="dep"></div>
+                </div>
+                <hr id="trennlinie">
+                <div id="container">
+                    <div id="depList"></div>
+                </div>
+            </div> 
+
+        
+        </div> -->
+        
+        
         <!-- Ab hier fängt es an, Spaß zu machen 🤩 -->
 
         <script>
@@ -148,11 +214,13 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
                     let usersElement = document.getElementById("user");
                     usersElement.innerHTML = "";
-                    let userElement = document.createElement("div");
-                    userElement.classList.add("user");
-                    usersElement.appendChild(userElement);
-                    userElement.innerHTML = `<b>Benutzername: </b>${response.username} <br/>` + `<b>Vorname: </b>${response.firstname} <br/>` + `<b>Nachname: </b>${response.lastname} <br/>`;
-
+                        response.forEach(userList => {
+                        // Empfangene Daten anzeigen
+                        let userListElement = document.createElement("div");
+                        userListElement.classList.add("user");
+                        usersElement.appendChild(userListElement);
+                        userListElement.innerHTML = `<b>Benutzername: </b>${userList.username} <br/>` + `<b>Vorname: </b>${userList.firstname} <br/>` + `<b>Nachname: </b>${userList.lastname} <br/>`;
+                    });
                 }
             };
 

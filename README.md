@@ -43,13 +43,13 @@ Screenshots
 <table style="max-width: 100%;">
     <tr>
         <td>
-            <a href="screenshot1.png">
-                <img src="screenshot1.png" style="display: block; width: 100%;" />
+            <a href="login.png">
+                <img src="login.png" style="display: block; width: 100%;" />
             </a>
         </td>
         <td>
-            <a href="screenshot2.png">
-                <img src="screenshot2.png" style="display: block; width: 100%;" />
+            <a href="registrieren.png">
+                <img src="registrieren.png" style="display: block; width: 100%;" />
             </a>
         </td>
     </tr>
@@ -66,13 +66,13 @@ Screenshots
 <table style="max-width: 100%;">
     <tr>
         <td>
-            <a href="screenshot3.png">
-                <img src="screenshot3.png" style="display: block; width: 100%;" />
+            <a href="dashboard.png">
+                <img src="dashboard.png" style="display: block; width: 100%;" />
             </a>
         </td>
         <td>
-            <a href="screenshot4.png">
-                <img src="screenshot4.png" style="display: block; width: 100%;" />
+            <a href="projectList.png">
+                <img src="projectList.png" style="display: block; width: 100%;" />
             </a>
         </td>
     </tr>
@@ -81,7 +81,7 @@ Screenshots
             Dashboard
         </td>
         <td>
-            Liste mit Aufgaben
+            Liste mit Projekten
         </td>
     </tr>
 </table>
@@ -89,27 +89,50 @@ Screenshots
 <table style="max-width: 100%;">
     <tr>
         <td>
-            <a href="screenshot5.png">
-                <img src="screenshot5.png" style="display: block; width: 100%;" />
+            <a href="createProject.png">
+                <img src="createProject.png" style="display: block; width: 100%;" />
             </a>
         </td>
         <td>
-            <a href="screenshot6.png">
-                <img src="screenshot6.png" style="display: block; width: 100%;" />
+            <a href="abteilunglist.png">
+                <img src="abteilunglist.png" style="display: block; width: 100%;" />
             </a>
         </td>
     </tr>
     <tr>
         <td>
-            Aufgabe bearbeiten
+            Projekt erzeugen
         </td>
         <td>
-            Abteilungen bearbeiten
+            Abteilungslist
         </td>
     </tr>
 </table>
 
-Diese sind in der Testdokumentation zu finden. 
+<table style="max-width: 100%;">
+    <tr>
+        <td>
+            <a href="settings.png">
+                <img src="settings.png" style="display: block; width: 100%;" />
+            </a>
+        </td>
+        <td>
+            <a href="RestClient.png">
+                <img src="RestClient.png" style="display: block; width: 100%;" />
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Einstellungen
+        </td>
+        <td>
+            RestClient
+        </td>
+    </tr>
+</table>
+
+Weitere Screenshots sind in der Testdokumentation zu finden. 
 
 Copyright
 ---------

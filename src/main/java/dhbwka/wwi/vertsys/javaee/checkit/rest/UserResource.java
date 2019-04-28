@@ -23,11 +23,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -48,17 +50,22 @@ public class UserResource {
 
     
     @GET
-    @Path("{id}")
+    @Path("userid/{id}")
     public UserDTO find(@PathParam("id") String id) {
         return userFacade.findUser(id);
     }
     
     
-    @GET
+   /* @GET
     public List<UserDTO> findAllDTO() {
         return userFacade.findAll();
+    }*/
+    
+    
+    @GET
+    public List<UserDTO> findProjects(@QueryParam("query") @DefaultValue("") String query) {        
+        return this.userFacade.findByQuery(query);
     }
-
     
 
     

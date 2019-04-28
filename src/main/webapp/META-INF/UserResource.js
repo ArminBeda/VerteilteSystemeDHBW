@@ -30,11 +30,11 @@ class UserResource {
     
     async authorize() {
         
-            let login = document.getElementById("loginsucces");
-            login.style.display = 'none';
+        let login = document.getElementById("loginsucces");
+        login.style.display = 'none';
 
         let url = this.url;
-        url = url + this.username;
+        url = url + "userid/" + this.username;
         
         let response = await fetch(url, {
             headers: {
@@ -79,7 +79,7 @@ class UserResource {
     async findUser(username_query) {
 
         let url = this.url;
-        url = url + username_query;
+        url = url + "?query=" + username_query;
         
         let response = await fetch(url, {
             headers: {

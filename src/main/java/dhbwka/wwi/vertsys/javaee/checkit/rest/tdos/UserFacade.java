@@ -18,6 +18,7 @@ package dhbwka.wwi.vertsys.javaee.checkit.rest.tdos;
 
 import dhbwka.wwi.vertsys.javaee.checkit.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.checkit.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.checkit.projects.jpa.Project;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -44,5 +45,14 @@ public class UserFacade {
     public UserDTO findUser(String id) {
         return new UserDTO(userBean.findUser(id));
     }
+    
+           public List<UserDTO> findByQuery(String query){
+            List<User> users = userBean.findByQuery(query);
+            return users.stream().map((user) -> {
+            UserDTO userDTO = new UserDTO(user);
+            return userDTO;
+        }).collect(Collectors.toList());
+    }
+       
     
 }
