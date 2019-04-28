@@ -71,7 +71,7 @@ Screenshots
             </a>
         </td>
         <td>
-            <a href="projectList.png">
+            <a href="projectlist.png">
                 <img src="projectList.png" style="display: block; width: 100%;" />
             </a>
         </td>
@@ -117,8 +117,8 @@ Screenshots
             </a>
         </td>
         <td>
-            <a href="RestClient.png">
-                <img src="RestClient.png" style="display: block; width: 100%;" />
+            <a href="authorization.png">
+                <img src="authorization.png" style="display: block; width: 100%;" />
             </a>
         </td>
     </tr>
